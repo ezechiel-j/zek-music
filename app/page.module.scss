@@ -1,0 +1,73 @@
+@use "scss/colors";
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: -9999;
+
+  background-image: url("../public/backgrounds/clip-sevenProd.jpg");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  filter: brightness(0.5);
+}
+
+#pageContainer {
+  height: 100%;
+  position: relative;
+
+  h2 {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-70%);
+    margin-left: 1.5vw;
+
+    font-weight: 300;
+    font-size: 4rem;
+
+    span {
+      font-weight: 400;
+    }
+  }
+}
+
+#knowMe {
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  svg {
+    height: 2rem;
+    width: auto;
+  }
+
+  a {
+    display: inline-block;
+
+    border-radius: 17px;
+    background-color: colors.$white;
+    box-shadow: 0 0 15px colors.$blue-0;
+    padding: 0.75rem 1.5rem;
+
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: colors.$black;
+
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: colors.$blue-3;
+      color: colors.$white;
+    }
+  }
+}

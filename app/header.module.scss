@@ -1,0 +1,76 @@
+@use "scss/colors";
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    height: 100%;
+
+    a {
+      display: block;
+      height: 100%;
+      border-radius: 100px;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  nav {
+    border-radius: 100px;
+    background-color: colors.$white;
+    position: fixed;
+    top: 2.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    box-shadow: 0 0 15px colors.$blue-0;
+  }
+
+  ul {
+    align-self: stretch;
+    display: flex;
+
+    li {
+      padding: 0.2rem;
+
+      &:hover {
+        a {
+          background-color: colors.$blue-1;
+          color: colors.$white;
+        }
+      }
+
+      &:first-child {
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
+      }
+    }
+
+    a {
+      min-width: max-content;
+      border-radius: 100px;
+      padding: 0.8rem 1.25rem;
+      display: block;
+
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: colors.$black;
+
+      transition: background-color 0.2s, color 0.2s;
+    }
+  }
+
+  span {
+    height: 100%;
+    aspect-ratio: 1/1;
+  }
+}

@@ -1,0 +1,9 @@
+#superContainer {
+  min-height: 100svh;
+  padding: 1.5rem;
+
+  display: grid;
+  grid-template-rows: 10svh 1fr 3svh;
+  grid-template-columns: 1fr;
+  row-gap: 1.5rem;
+}

@@ -1,0 +1,10 @@
+@use "scss/reset";
+@use "scss/colors";
+
+* {
+  color: colors.$white;
+}
+
+body {
+  background-color: colors.$blue-0;
+}
