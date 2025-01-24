@@ -67,6 +67,11 @@
 
       transition: background-color 0.2s, color 0.2s;
     }
+
+    a.active {
+      background-color: colors.$blue-1;
+      color: colors.$white;
+    }
   }
 
   span {

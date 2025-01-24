@@ -1,0 +1,78 @@
+@use "../scss/colors";
+
+#blogContainer {
+  height: 100%;
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+  row-gap: 2rem;
+  grid-template-columns: 1fr;
+  grid-template-areas: "header" "posts";
+
+  > * {
+    border: solid 1px;
+  }
+}
+
+#pageHeader {
+  grid-area: header;
+}
+
+#blogPosts {
+  grid-area: posts;
+
+  display: flex;
+  column-gap: 2rem;
+  row-gap: 4rem;
+  flex-wrap: wrap;
+
+  li {
+    width: calc(25% - ((2rem * 3) / 4));
+    border-radius: 15px;
+    padding: 1.5rem;
+    background-color: colors.$blue-1;
+
+    transition: background-color 0.2s ease-out;
+
+    &:hover {
+      background-color: colors.$blue-2;
+    }
+
+    a {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      h2 {
+        font-size: 1.2rem;
+
+      }
+
+      img {
+        width: 100%;
+        border-radius: 10px;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+      }
+
+      p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+
+        font-size: 0.95rem;
+        line-height: 1.2;
+      }
+
+      footer {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+
+
+  }
+}

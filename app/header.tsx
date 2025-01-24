@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import styles from "./header.module.scss";
+import { usePathname } from "next/navigation";
 
 const menuLinks = [
   { name: "Productions", href: "/productions", slug: "productions" },
@@ -13,6 +14,8 @@ const menuLinks = [
 ];
 
 const Header = () => {
+  const path = usePathname();
+
   return (
     <header id={styles.header}>
       <h1>
@@ -25,7 +28,12 @@ const Header = () => {
         <ul>
           {menuLinks.map((link) => (
             <li key={link.slug}>
-              <Link href={link.href}>{link.name}</Link>
+              <Link
+                href={link.href}
+                className={path.includes(link.slug) ? styles.active : ""}
+              >
+                {link.name}
+              </Link>
             </li>
           ))}
         </ul>
