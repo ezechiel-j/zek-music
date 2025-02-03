@@ -1,0 +1,21 @@
+@use "../scss/colors";
+
+#servicesNav {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 2.5rem;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "nav content";
+
+  > * {
+    border: solid 1px;
+  }
+
+  > nav {
+    grid-area: nav;
+  }
+
+  > div {
+    grid-area: content;
+  }
+}

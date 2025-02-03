@@ -1,0 +1,14 @@
+@use "../scss/colors";
+
+#productionPage {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: auto 1fr;
+  column-gap: 5rem;
+  grid-template-areas: "nav content" "nav content";
+}
+
+#productionNav {
+  grid-area: nav;
+  border-right: rgba(colors.$white, 0.15) 2px solid;
+}

@@ -1,0 +1,29 @@
+@use "../scss/colors";
+
+#newsNav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  a {
+    display: block;
+    border-radius: 100px;
+    padding: 0.8rem 1.25rem;
+    font-weight: 500;
+    color: colors.$white;
+
+    background-color: colors.$blue-3;
+
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: colors.$white;
+      color: colors.$black;
+    }
+  }
+
+  a.active {
+    background-color: colors.$white;
+    color: colors.$black;
+  }
+}

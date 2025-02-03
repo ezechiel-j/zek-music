@@ -1,0 +1,37 @@
+@use "../scss/colors";
+
+#productionsCategories {
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    border-radius: 7px;
+    padding: 1rem 0.7rem;
+
+    transition: background-color 0.15s ease-out;
+
+    svg {
+      vertical-align: middle;
+      width: 30px;
+      height: auto;
+    }
+
+    .categoryName {
+      font-weight: 500;
+    }
+
+    &:hover {
+      background-color: rgba(colors.$blue-3, 0.4);
+    }
+  }
+
+  a.active {
+    background-color: colors.$blue-3;
+  }
+}

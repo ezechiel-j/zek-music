@@ -1,0 +1,143 @@
+@use "../scss/colors";
+
+#setupContainer {
+  display: grid;
+  grid-template-columns: 20vw 1fr;
+  column-gap: 3rem;
+  grid-template-rows: 1fr;
+
+  grid-template-areas: "filters" "setup";
+}
+
+#filters {
+  grid-area: filters;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+
+      font-weight: 400;
+      font-size: 1.1rem;
+
+      input[type="checkbox"] {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+
+      label {
+        cursor: pointer;
+        min-width: max-content;
+      }
+    }
+  }
+
+  button {
+    border: solid 2px colors.$blue-4;
+    background-color: colors.$blue-4;
+    color: colors.$white;
+    align-self: center;
+
+    display: block;
+    padding: 0.7rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    transition-timing-function: ease-out;
+
+    &:hover {
+      background-color: colors.$white;
+      background-color: transparent;
+      color: colors.$white;
+    }
+  }
+}
+
+#blogList {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    width: 25%;
+    border-top: solid 4px rgba(colors.$white, 0.3);
+    transition: border-top-color 0.2s ease-out;
+    padding: 2rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+      border-top-color: colors.$white;
+    }
+
+    img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: contain;
+      background-color: rgba(colors.$blue-6, 0.12);
+      padding: 0 0.5rem;
+      border-radius: 10px;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+
+      margin-bottom: 0.7rem;
+
+      > * {
+        line-height: 1.2;
+        text-align: center;
+      }
+
+      span {
+        font-weight: 600;
+        text-transform: uppercase;
+        color: rgba(colors.$white, 0.7);
+      }
+
+      h4 {
+        font-weight: 500;
+      }
+    }
+
+    a {
+      margin-top: auto;
+      display: block;
+      border-radius: 8;
+      padding: 0.8rem 1.3rem;
+      font-weight: 600;
+      color: colors.$white;
+
+      background-color: colors.$blue-2;
+
+      transition: background-color 0.2s, color 0.2s;
+
+      &:hover {
+        background-color: colors.$white;
+        color: colors.$black;
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@use "scss/colors";
+
+#scrollToTop {
+  position: fixed;
+  bottom: 12svh;
+  right: 3vw;
+  z-index: 9999;
+
+  box-shadow: 0 0 15px colors.$black;
+  background-color: colors.$white;
+  border-radius: 10px;
+  border: solid 2px colors.$white;
+  padding: 0.5rem;
+
+  transition: background-color 0.2s;
+
+  svg {
+    fill: colors.$black;
+    transition: fill 0.2s;
+  }
+
+  &:hover {
+    background-color: rgba($color: colors.$black, $alpha: 0.15);
+    svg {
+      fill: colors.$white;
+    }
+  }
+}

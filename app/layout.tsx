@@ -4,6 +4,7 @@ import Footer from "./footer";
 import "./global.scss";
 import Header from "./header";
 import styles from "./layout.module.scss";
+import ScrollToTop from "./scrollToTop";
 
 export const metadata: Metadata = {
   title: "Zek music",
@@ -23,6 +24,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </div>
+        <ScrollToTop />
       </body>
     </html>
   );

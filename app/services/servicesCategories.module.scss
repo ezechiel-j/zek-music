@@ -1,0 +1,22 @@
+@use "../scss/colors";
+
+#servicesCategories {
+  display: flex;
+
+  a {
+    display: block;
+    padding: 1rem;
+    border-radius: 10px;
+    min-width: max-content;
+    font-weight: 500;
+    transition: background-color 0.2s ease-out;
+
+    &:hover {
+      background-color: colors.$blue-1;
+    }
+  }
+
+  a.active {
+    background-color: colors.$blue-3;
+  }
+}

@@ -1,0 +1,21 @@
+@use "../../scss/colors";
+
+#imagesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  li {
+    width: calc(20% - ((1rem * 4) / 5));
+
+    img {
+      aspect-ratio: 1/1;
+      width: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
+}

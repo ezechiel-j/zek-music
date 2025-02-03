@@ -5,12 +5,13 @@ import styles from "./header.module.scss";
 import { usePathname } from "next/navigation";
 
 const menuLinks = [
-  { name: "Productions", href: "/productions", slug: "productions" },
-  { name: "Services", href: "/services", slug: "services" },
-  { name: "Actualités", href: "/news", slug: "news" },
+  { name: "Productions", href: "/productions/videos", slug: "productions" },
+  { name: "Services", href: "/services/bass", slug: "services" },
+  { name: "News", href: "/news", slug: "news" },
   { name: "Agenda", href: "/agenda", slug: "agenda" },
   { name: "Blog", href: "/blog", slug: "blog" },
-  { name: "Contact", href: "/contact", slug: "contact" },
+  { name: "Setup", href: "/setup", slug: "setup" },
+  { name: "Contact", href: "/contact/mail", slug: "contact" },
 ];
 
 const Header = () => {
@@ -32,7 +33,7 @@ const Header = () => {
                 href={link.href}
                 className={path.includes(link.slug) ? styles.active : ""}
               >
-                {link.name}
+                <span>{link.name}</span>
               </Link>
             </li>
           ))}
