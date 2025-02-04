@@ -1,15 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./servicesNav.module.scss";
+import styles from "./servicesCategories.module.scss";
 import { usePathname } from "next/navigation";
 
 const servicesLinks = [
-  { name: "Performance", href: "/services/performance", slug: "performance" },
-  { name: "Pédagogie", href: "/services/pedagogy", slug: "pedagogy" },
+  {
+    name: "Performance",
+    href: "/services/performance/bassist-keyboardist",
+    slug: "performance",
+  },
+  { name: "Pédagogie", href: "/services/pedagogy/solfege", slug: "pedagogy" },
 ];
 
-const ServiceNav = () => {
+const ServiceCategories = () => {
   const pathname = usePathname();
 
   return (
@@ -28,4 +32,4 @@ const ServiceNav = () => {
   );
 };
 
-export default ServiceNav;
+export default ServiceCategories;

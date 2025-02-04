@@ -1,4 +1,5 @@
 import styles from "./layout.module.scss";
+import ServiceCategories from "./servicesCategoriesNav";
 
 const ServiceLayout = ({
   children,
@@ -6,10 +7,10 @@ const ServiceLayout = ({
   return (
     <div id={styles.servicesContainer}>
       <nav id={styles.servicesNav}>
-        <CategoryNav
+        <ServiceCategories />
       </nav>
 
-      <div>{children}</div>
+      <div id={styles.servicesContent}>{children}</div>
     </div>
   );
 };

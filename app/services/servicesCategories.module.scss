@@ -2,21 +2,26 @@
 
 #servicesCategories {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 
   a {
     display: block;
-    padding: 1rem;
-    border-radius: 10px;
+    border-radius: 50px;
     min-width: max-content;
+    padding: 0.8rem 1.25rem;
     font-weight: 500;
-    transition: background-color 0.2s ease-out;
+    background-color: colors.$blue-3;
+    transition: background-color 0.2s, color 0.2s ease-out;
 
     &:hover {
-      background-color: colors.$blue-1;
+      background-color: colors.$blue-5;
     }
   }
 
   a.active {
-    background-color: colors.$blue-3;
+    background-color: colors.$white;
+    color: colors.$black;
   }
 }

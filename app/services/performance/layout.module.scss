@@ -1,0 +1,12 @@
+#performanceContainer {
+  display: grid;
+  grid-template-columns: 18vw 1fr;
+  column-gap: 5svh;
+  grid-template-rows: 1fr;
+  row-gap: 1.5rem;
+  grid-template-areas: "nav" "content";
+
+  > * {
+    border: solid 1px yellow;
+  }
+}

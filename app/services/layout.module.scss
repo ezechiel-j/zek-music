@@ -1,21 +1,17 @@
 @use "../scss/colors";
 
-#servicesNav {
+#servicesContainer {
   display: grid;
   grid-template-columns: 1fr;
-  column-gap: 2.5rem;
   grid-template-rows: auto 1fr;
-  grid-template-areas: "nav content";
+  row-gap: 1.5rem;
+  grid-template-areas: "nav" "content";
 
-  > * {
-    border: solid 1px;
-  }
-
-  > nav {
+  .servicesNav {
     grid-area: nav;
   }
 
-  > div {
+  .servicesContent {
     grid-area: content;
   }
 }
