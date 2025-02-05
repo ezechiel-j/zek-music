@@ -1,5 +1,5 @@
 const page = () => {
-  return <div>SOlfège service</div>;
+  return <div>Solfège service</div>;
 };
 
 export default page;
