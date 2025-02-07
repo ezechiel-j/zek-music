@@ -8,10 +8,10 @@
 
 #services {
   display: flex;
-  gap: 2rem;
+  gap: 4rem;
 
   > * {
-    width: calc(33.33% - ((2rem * 2) / 3));
+    width: calc(33.33% - ((4rem * 2) / 3));
   }
 }
 
@@ -30,7 +30,7 @@
     gap: 1.5rem;
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 400;
     }
 
@@ -41,13 +41,17 @@
       align-items: center;
 
       span:first-child {
-        font-size: 4rem;
+        font-size: 3rem;
         font-weight: 400;
       }
 
       span:last-child {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
       }
     }
+  }
+
+  .serviceDescription {
+    background-color: colors.$blue-1;
   }
 }

@@ -14,22 +14,24 @@ const page = () => {
             </div>
           </header>
 
-          <div>
-            <span>Définition</span>
-            <span>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-              atque ex accusantium repellendus alias.
-            </span>
-          </div>
-
-          <div>
-            <span>Définition</span>
-            <span>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-              atque ex accusantium repellendus alias.
-            </span>
+          <div className={styles.serviceDescription}>
+            <div>
+              <span>Définition</span>
+              <span>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
+                atque ex accusantium repellendus alias.
+              </span>
+            </div>
+            <div>
+              <span>Définition</span>
+              <span>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
+                atque ex accusantium repellendus alias.
+              </span>
+            </div>
           </div>
         </div>
+
         <div className={styles.service}>
           <header>
             <h2 className={lexend.className}>Répétition</h2>
