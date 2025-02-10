@@ -1,11 +1,11 @@
-import styles from "./layout.module.scss";
+import styles from "../subLayout.module.scss";
 import PedagogyNav from "./pedagogyNav";
 
 const ServiceCategoryLayout = ({
   children,
 }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <div id={styles.pedagogyContainer}>
+    <div id={styles.container}>
       <nav>
         <PedagogyNav />
       </nav>

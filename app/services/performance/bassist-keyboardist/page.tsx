@@ -1,56 +1,40 @@
 import { lexend } from "../../../fonts";
-import styles from "./page.module.scss";
+import ServiceCard from "../../serviceCard";
+import styles from "../../pageContent.module.scss";
 
 const page = () => {
   return (
-    <div id={styles.performancePage}>
-      <div id={styles.services}>
-        <div className={styles.service}>
-          <header>
-            <h2 className={lexend.className}>Performance scénique</h2>
-            <div className={styles.priceContainer}>
-              <span className={lexend.className}>350 &euro;</span>
-              <span>l&apos;unité</span>
-            </div>
-          </header>
+    <div id={styles.pageContent}>
+      <section id={styles.services}>
+        <ServiceCard
+          name="Concert"
+          price={150}
+          unit="concert"
+          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto atque ex accusantium repellendus alias."
+        />
 
-          <div className={styles.serviceDescription}>
-            <div>
-              <span>Définition</span>
-              <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-                atque ex accusantium repellendus alias.
-              </span>
-            </div>
-            <div>
-              <span>Définition</span>
-              <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-                atque ex accusantium repellendus alias.
-              </span>
-            </div>
-          </div>
-        </div>
+        <ServiceCard
+          name="Répétition"
+          price={20}
+          unit="heure"
+          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto atque ex accusantium repellendus alias."
+        />
 
-        <div className={styles.service}>
-          <header>
-            <h2 className={lexend.className}>Répétition</h2>
-            <div className={styles.priceContainer}>
-              <span className={lexend.className}>50 &euro;</span>
-              <span>l&apos;unité</span>
-            </div>
-          </header>
-        </div>
-        <div className={styles.service}>
-          <header>
-            <h2 className={lexend.className}>Piste audio</h2>
-            <div className={styles.priceContainer}>
-              <span className={lexend.className}>450 &euro;</span>
-              <span>l&apos;unité</span>
-            </div>
-          </header>
-        </div>
-      </div>
+        <ServiceCard
+          name="Piste audio"
+          price={250}
+          unit="piste"
+          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto atque ex accusantium repellendus alias."
+        />
+      </section>
+
+      <section id={styles.simulator}>
+        <header>
+          <h2 className={lexend.className}>
+            Besoin d&apos;une <span>estimation</span> ?
+          </h2>
+        </header>
+      </section>
     </div>
   );
 };

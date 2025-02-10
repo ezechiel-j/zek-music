@@ -1,0 +1,28 @@
+@use "../scss/colors";
+
+#pageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+#services {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+
+  > * {
+    width: calc(33.33% - ((4rem * 2) / 3));
+  }
+}
+
+#simulator {
+  h2 {
+    text-align: center;
+    font-size: 3rem;
+
+    span {
+      color: colors.$blue-10;
+    }
+  }
+}
