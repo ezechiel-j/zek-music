@@ -5,21 +5,27 @@ const ARTIST_ID = "2OAe5vTueXJySE7CXJJpaA"; // Replace with your actual artist I
 
 export async function GET() {
   try {
-    // Get access token from our API route
-    const tokenRes = await fetch(
+    let tokenRes = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/spotify/token`
     );
-    const { accessToken } = await tokenRes.json();
+    let tokenData = await tokenRes.json();
 
-    if (!accessToken) throw new Error("No access token available");
+    if (!tokenData.accessToken) {
+      console.warn("No access token, retrying...");
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second
+      tokenRes = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/spotify/token`
+      );
+      tokenData = await tokenRes.json();
+    }
 
-    // Fetch singles
+    if (!tokenData.accessToken)
+      throw new Error("Failed to retrieve valid token");
+
     const res = await fetch(
       `https://api.spotify.com/v1/artists/${ARTIST_ID}/albums?include_groups=single`,
       {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+        headers: { Authorization: `Bearer ${tokenData.accessToken}` },
       }
     );
 
