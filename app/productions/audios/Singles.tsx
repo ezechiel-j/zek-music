@@ -21,16 +21,6 @@ export default function Singles() {
   useEffect(() => {
     const fetchSingles = async () => {
       try {
-        // Fetch token first
-        const tokenRes = await fetch("/api/spotify/token");
-        const { accessToken } = await tokenRes.json();
-
-        if (!accessToken) {
-          console.error("No access token available");
-          return;
-        }
-
-        // Fetch singles after getting the token
         const res = await fetch("/api/spotify/singles");
         const data = await res.json();
         if (data.error) throw new Error(data.error);
