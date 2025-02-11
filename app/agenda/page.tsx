@@ -54,10 +54,6 @@ const page = () => {
               <label htmlFor="paid">Payantes</label>
             </span>
             <span>
-              <input type="checkbox" name="studentPrice" id="studentPrice" />
-              <label htmlFor="studentPrice">Tarif étudiant</label>
-            </span>
-            <span>
               <input type="checkbox" name="free" id="free" />
               <label htmlFor="free">Gratuites</label>
             </span>

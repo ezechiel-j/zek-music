@@ -1,0 +1,191 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+//NEWS PAGE
+model NewsPost {
+  id           Int    @id @default(autoincrement())
+  title        String @unique
+  teaser       String @db.TinyText
+  thumbnailSrc String
+  thumbnailAlt String
+
+  content String @db.LongText
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  category   NewsPostCategory @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model NewsPostCategory {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  NewsPost NewsPost[]
+}
+
+// AGENDA PAGE
+model Event {
+  id           Int    @id @default(autoincrement())
+  name         String @unique
+  description  String @db.MediumText
+  thumbnailSrc String
+  thumbnailAlt String
+
+  startDate DateTime  @db.DateTime()
+  endDate   DateTime? @db.DateTime()
+  city      String    @db.TinyText
+  state     String?   @db.TinyText
+  country   String    @db.TinyText
+  place     String    @db.TinyText
+
+  isPaid Boolean @default(false)
+
+  type   EventType @relation(fields: [typeId], references: [id])
+  typeId Int
+}
+
+model EventType {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  Event Event[]
+}
+
+// BLOG PAGE
+model BlogPost {
+  id           Int    @id @default(autoincrement())
+  thumbnailSrc String
+  thumbnailAlt String
+  title        String @unique
+  readTime     Int    @db.TinyInt
+
+  category   BlogPostCategory @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model BlogPostCategory {
+  id       Int        @id @default(autoincrement())
+  name     String     @unique
+  BlogPost BlogPost[]
+}
+
+// SETUP PAGE
+model SetupItem {
+  id           Int    @id @default(autoincrement())
+  thumbnailSrc String
+  thumbnailAlt String
+
+  constructor String  @db.TinyText
+  series      String? @db.TinyText
+  model       String  @unique
+
+  externalLink String @unique
+
+  isSoftware Boolean
+
+  places SetupItemsOnPlaces[]
+  roles  SetupItemsOnRoles[]
+}
+
+model SetupItemPlace {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  items SetupItemsOnPlaces[]
+}
+
+model SetupItemsOnPlaces {
+  SetupItem        SetupItem      @relation(fields: [setupItemId], references: [id])
+  setupItemId      Int
+  SetupItemPlace   SetupItemPlace @relation(fields: [setupItemPlaceId], references: [id])
+  setupItemPlaceId Int
+
+  @@id([setupItemId, setupItemPlaceId])
+}
+
+model SetupItemRole {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  items SetupItemsOnRoles[]
+}
+
+model SetupItemsOnRoles {
+  SetupItem       SetupItem     @relation(fields: [setupItemId], references: [id])
+  setupItemId     Int
+  SetupItemRole   SetupItemRole @relation(fields: [setupItemRoleId], references: [id])
+  setupItemRoleId Int
+
+  @@id([setupItemId, setupItemRoleId])
+}
+
+// PRODUCTION PAGE
+// Videos
+model Video {
+  id                    Int    @id @default(autoincrement())
+  thumbnailSrc          String
+  thumbnailAlt          String
+  title                 String @unique
+  videoExternalLink     String @unique
+  publisher             String @db.TinyText
+  publisherExternalLink String @unique
+}
+
+// Audio is fetched by API
+
+// Reels are fetched by API
+
+// Gallery
+model GalleryImage {
+  id           Int    @id @default(autoincrement())
+  thumbnailSrc String
+  thumbnailAlt String
+  caption      String @db.TinyText
+}
+
+// SERVICES PAGE
+model Service {
+  id          Int    @id @default(autoincrement())
+  name        String @unique
+  description String @db.Text
+
+  price Float  @db.Double
+  unit  String @db.TinyText
+
+  category   ServiceCategory     @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  natures    ServicesOnNatures[]
+}
+
+model ServiceCategory {
+  id      Int       @id @default(autoincrement())
+  name    String    @unique
+  Service Service[]
+}
+
+model ServiceNature {
+  id       Int                 @id @default(autoincrement())
+  name     String              @unique
+  services ServicesOnNatures[]
+}
+
+model ServicesOnNatures {
+  Service         Service       @relation(fields: [serviceId], references: [id])
+  serviceId       Int
+  ServiceNature   ServiceNature @relation(fields: [serviceNatureId], references: [id])
+  serviceNatureId Int
+
+  @@id([serviceId, serviceNatureId])
+}

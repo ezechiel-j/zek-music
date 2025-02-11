@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { FaSpotify } from "react-icons/fa";
 import { lexend } from "../../fonts";
 import styles from "./singles.module.scss";
+import { SiTidal } from "react-icons/si";
+import { FaDeezer } from "react-icons/fa";
+import { SiApplemusic } from "react-icons/si";
+import { SiAmazonmusic } from "react-icons/si";
 
 type Single = {
   id: string;
@@ -56,6 +60,42 @@ export default function Singles() {
               target="_blank"
             >
               <FaSpotify />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://tidal.com/browse/track/395971255"
+              title="Tidal"
+              target="_blank"
+            >
+              <SiTidal />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://deezer.page.link/8XgDQr9qnSR4UW4F7"
+              title="Deezer"
+              target="_blank"
+            >
+              <FaDeezer />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://music.apple.com/fr/album/waste-wind-gamejam-aaa-loria-2024-best-ost/1776462240?i=1776462241"
+              title="Apple Music"
+              target="_blank"
+            >
+              <SiApplemusic />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://music.amazon.fr/albums/B0DL3NNHZY?marketplaceId=A13V1IB3VIYZZH&musicTerritory=FR&ref=dm_sh_KPa5QFsLjUdpsrIVVkutDOwkb&trackAsin=B0DL3NL6DK"
+              title="Amazon Music"
+              target="_blank"
+            >
+              <SiAmazonmusic />
             </a>
           </li>
         </ul>

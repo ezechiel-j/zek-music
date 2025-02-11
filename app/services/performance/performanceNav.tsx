@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 const performanceLinks = [
   {
-    name: "Bassiste claviériste",
+    name: "Basse et clavier",
     href: "/services/performance/bassist-keyboardist",
     slug: "bassist-keyboardist",
   },
