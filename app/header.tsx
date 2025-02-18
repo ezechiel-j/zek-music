@@ -15,7 +15,7 @@ const menuLinks = [
   { name: "Agenda", href: "/agenda", slug: "agenda" },
   { name: "Blog", href: "/blog", slug: "blog" },
   { name: "Setup", href: "/setup", slug: "setup" },
-  { name: "Contact", href: "/contact/mail", slug: "contact" },
+  { name: "Contact", href: "/contact", slug: "contact" },
 ];
 
 const Header = () => {
