@@ -4,51 +4,9 @@
   display: grid;
   grid-template-columns: 20vw 1fr;
   column-gap: 4vw;
-  grid-template-rows: 5svh 1fr 5svh;
+  grid-template-rows: auto;
   row-gap: 2svh;
-  grid-template-areas: "aside header" "aside setup" "aside footer";
-}
-
-#eventsHeader {
-  grid-area: header;
-}
-
-#eventsHeader,
-#eventsFooter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-
-  svg {
-    vertical-align: middle;
-  }
-
-  button {
-    height: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 50px;
-
-    position: relative;
-
-    span {
-      font-size: 1.5rem;
-      color: colors.$white;
-
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  button.active {
-    background-color: colors.$white;
-
-    span {
-      color: colors.$black;
-    }
-  }
+  grid-template-areas: "aside events";
 }
 
 #filters {
@@ -65,58 +23,58 @@
   }
 }
 
-#filterForm {
-  background-color: colors.$white;
-  border-radius: 15px;
-  padding: 1rem;
+
+
+#eventsContainer {
+  grid-area: events;
 
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
-  div {
+  #eventsHeader,
+  #eventsFooter {
     display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 
-    h3 {
-      font-size: 1.2rem;
+    svg {
+      vertical-align: middle;
+      width: 1.5rem;
+      height: auto;
     }
 
-    span {
-      min-width: min-content;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    button {
+      display: block;
+      aspect-ratio: 1/1;
+      width: 2.5rem;
+      border-radius: 50px;
 
-      label {
-        width: max-content;
-        cursor: pointer;
+      position: relative;
+      transition: background-color 0.2s ease-out;
+
+      span {
+        font-size: 1.5rem;
+        color: colors.$white;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
 
-      input[type="date"] {
-        background-color: rgba(colors.$black, $alpha: 0.15);
-        padding: 0.3rem;
-        border-radius: 5px;
+      &:hover {
+        background-color: colors.$blue-3;
       }
     }
-  }
-  button {
-    align-self: center;
 
-    padding: 0.7rem 2rem;
-    border: solid 2px colors.$blue-0;
-    background-color: colors.$blue-0;
-    color: colors.$white;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1.1rem;
+    button.active {
+      background-color: colors.$white;
 
-    transition: background-color 0.2s ease-out;
-
-    &:hover {
-      background-color: transparent;
-      color: colors.$blue-0;
+      span {
+        color: colors.$black;
+      }
     }
   }
 }
@@ -209,8 +167,4 @@
       text-decoration: solid 1px colors.$white;
     }
   }
-}
-
-#eventsFooter {
-  grid-area: footer;
 }

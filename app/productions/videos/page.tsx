@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { lexend } from "../../fonts";
 import styles from "./page.module.scss";
 
@@ -5,47 +6,7 @@ const videos = [
   {
     slug: "slug1",
     href: "",
-    thumbnail: "clip-sevenProd.jpg",
-    title: "Shofukan - Snarky Puppy",
-    collaboration: "Eliot Foltz",
-    collaborationLink: "",
-  },
-  {
-    slug: "slug2",
-    href: "",
-    thumbnail: "clip-sevenProd.jpg",
-    title: "Shofukan - Snarky Puppy",
-    collaboration: "Eliot Foltz",
-    collaborationLink: "",
-  },
-  {
-    slug: "slug3",
-    href: "",
-    thumbnail: "clip-sevenProd.jpg",
-    title: "Shofukan - Snarky Puppy",
-    collaboration: "Eliot Foltz",
-    collaborationLink: "",
-  },
-  {
-    slug: "slug4",
-    href: "",
-    thumbnail: "clip-sevenProd.jpg",
-    title: "Shofukan - Snarky Puppy",
-    collaboration: "Eliot Foltz",
-    collaborationLink: "",
-  },
-  {
-    slug: "slug5",
-    href: "",
-    thumbnail: "clip-sevenProd.jpg",
-    title: "Shofukan - Snarky Puppy",
-    collaboration: "Eliot Foltz",
-    collaborationLink: "",
-  },
-  {
-    slug: "slug6",
-    href: "",
-    thumbnail: "clip-sevenProd.jpg",
+    thumbnail: "shofukan-hear.png",
     title: "Shofukan - Snarky Puppy",
     collaboration: "Eliot Foltz",
     collaborationLink: "",
@@ -59,10 +20,20 @@ const page = () => {
         {videos.map((video) => (
           <li key={video.slug}>
             <a href={video.href} className={styles.video}>
-              <img src={`/backgrounds/${video.thumbnail}`} alt="Zek" />
+              <Image
+                src={`/thumbnails16_9/${video.thumbnail}`}
+                alt="Zek"
+                width={200}
+                height={200}
+                layout="responsive"
+              />
               <h2 className={lexend.className}>{video.title}</h2>
             </a>
-            <a href={video.collaborationLink} className={styles.collaboration}>
+            <a
+              href={video.collaborationLink}
+              className={styles.collaboration}
+              target="_blank"
+            >
               {video.collaboration}
             </a>
           </li>

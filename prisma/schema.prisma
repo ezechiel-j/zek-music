@@ -15,16 +15,17 @@ datasource db {
 
 //NEWS PAGE
 model NewsPost {
-  id           Int    @id @default(autoincrement())
-  title        String @unique
-  teaser       String @db.TinyText
-  thumbnailSrc String
-  thumbnailAlt String
+  id               Int    @id @default(autoincrement())
+  title            String @unique
+  teaser           String @db.TinyText
+  thumbnailSrc     String
+  thumbnailAlt     String
+  thumbnailCaption String @db.TinyText
 
-  content String @db.LongText
+  body String @db.LongText
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
+  createdAt DateTime @default(now())
+  readTime  Int      @db.TinyInt
 
   category   NewsPostCategory @relation(fields: [categoryId], references: [id])
   categoryId Int
@@ -39,19 +40,23 @@ model NewsPostCategory {
 // AGENDA PAGE
 model Event {
   id           Int    @id @default(autoincrement())
-  name         String @unique
-  description  String @db.MediumText
+  title        String @unique
+  description  String @db.LongText
   thumbnailSrc String
   thumbnailAlt String
 
-  startDate DateTime  @db.DateTime()
-  endDate   DateTime? @db.DateTime()
-  city      String    @db.TinyText
-  state     String?   @db.TinyText
-  country   String    @db.TinyText
-  place     String    @db.TinyText
+  startDate    DateTime  @db.DateTime()
+  endDate      DateTime? @db.DateTime()
+  city         String    @db.TinyText
+  state        String?   @db.TinyText
+  country      String    @db.TinyText
+  place        String    @db.TinyText
+  placeMapLink String
 
-  isPaid Boolean @default(false)
+  isPaid        Boolean @default(false)
+  boxOfficeLink String?
+  hasProgram    Boolean @default(false)
+  programLink   String?
 
   type   EventType @relation(fields: [typeId], references: [id])
   typeId Int
@@ -70,6 +75,8 @@ model BlogPost {
   thumbnailAlt String
   title        String @unique
   readTime     Int    @db.TinyInt
+
+  body String @db.LongText
 
   category   BlogPostCategory @relation(fields: [categoryId], references: [id])
   categoryId Int
@@ -132,27 +139,90 @@ model SetupItemsOnRoles {
 }
 
 // PRODUCTION PAGE
-// Videos
-model Video {
-  id                    Int    @id @default(autoincrement())
-  thumbnailSrc          String
-  thumbnailAlt          String
-  title                 String @unique
-  videoExternalLink     String @unique
-  publisher             String @db.TinyText
-  publisherExternalLink String @unique
-}
+// Audio can be fetched by API
+model Audio {
+  id           Int     @id @default(autoincrement())
+  thumbnailSrc String
+  thumbnailAlt String
+  title        String
+  isAlbum      Boolean
+  artist       String  @default("Zek")
 
-// Audio is fetched by API
+  spotifyLink     String? @unique
+  tidalLink       String? @unique
+  deezerLink      String? @unique
+  appleMusicLink  String? @unique
+  amazonMusicLink String? @unique
+
+  collaborators CollaboratorsOnAudios[]
+}
 
 // Reels are fetched by API
 
+// Videos
+model Video {
+  id                Int    @id @default(autoincrement())
+  thumbnailSrc      String
+  thumbnailAlt      String
+  title             String @unique
+  videoExternalLink String @unique
+
+  collaborators CollaboratorsOnVideos[]
+}
+
 // Gallery
 model GalleryImage {
-  id           Int    @id @default(autoincrement())
-  thumbnailSrc String
-  thumbnailAlt String
-  caption      String @db.TinyText
+  id          Int    @id @default(autoincrement())
+  imgSrc      String
+  imgAlt      String
+  description String @db.LongText
+
+  collaborators CollaboratorsOnPhotos[]
+}
+
+// Collaborators
+model Collaborator {
+  id          Int     @id @default(autoincrement())
+  pictureSrc  String
+  pictureAlt  String
+  name        String  @unique
+  description String  @db.LongText
+  extLink1    String? @unique
+  extLink2    String? @unique
+  extLink3    String? @unique
+  extLink4    String? @unique
+  extLink5    String? @unique
+
+  videos CollaboratorsOnVideos[]
+  photos CollaboratorsOnPhotos[]
+  audios CollaboratorsOnAudios[]
+}
+
+model CollaboratorsOnVideos {
+  Collaborator   Collaborator @relation(fields: [collaboratorId], references: [id])
+  collaboratorId Int
+  Video          Video        @relation(fields: [videoId], references: [id])
+  videoId        Int
+
+  @@id([collaboratorId, videoId])
+}
+
+model CollaboratorsOnPhotos {
+  GalleryImage   GalleryImage @relation(fields: [galleryImageId], references: [id])
+  galleryImageId Int
+  Collaborator   Collaborator @relation(fields: [collaboratorId], references: [id])
+  collaboratorId Int
+
+  @@id([collaboratorId, galleryImageId])
+}
+
+model CollaboratorsOnAudios {
+  Audio          Audio        @relation(fields: [audioId], references: [id])
+  audioId        Int
+  Collaborator   Collaborator @relation(fields: [collaboratorId], references: [id])
+  collaboratorId Int
+
+  @@id([audioId, collaboratorId])
 }
 
 // SERVICES PAGE
@@ -164,9 +234,9 @@ model Service {
   price Float  @db.Double
   unit  String @db.TinyText
 
-  category   ServiceCategory     @relation(fields: [categoryId], references: [id])
+  category   ServiceCategory   @relation(fields: [categoryId], references: [id])
   categoryId Int
-  natures    ServicesOnNatures[]
+  natures    ServicesOnRoles[]
 }
 
 model ServiceCategory {
@@ -175,17 +245,17 @@ model ServiceCategory {
   Service Service[]
 }
 
-model ServiceNature {
-  id       Int                 @id @default(autoincrement())
-  name     String              @unique
-  services ServicesOnNatures[]
+model ServiceRole {
+  id       Int               @id @default(autoincrement())
+  name     String            @unique
+  services ServicesOnRoles[]
 }
 
-model ServicesOnNatures {
-  Service         Service       @relation(fields: [serviceId], references: [id])
-  serviceId       Int
-  ServiceNature   ServiceNature @relation(fields: [serviceNatureId], references: [id])
-  serviceNatureId Int
+model ServicesOnRoles {
+  Service       Service     @relation(fields: [serviceId], references: [id])
+  serviceId     Int
+  ServiceRole   ServiceRole @relation(fields: [serviceRoleId], references: [id])
+  serviceRoleId Int
 
-  @@id([serviceId, serviceNatureId])
+  @@id([serviceId, serviceRoleId])
 }

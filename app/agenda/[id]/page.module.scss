@@ -1,0 +1,197 @@
+@use "../../scss/colors";
+
+#eventPage {
+  display: grid;
+  grid-template-columns: 1fr 22vw;
+  column-gap: 4vw;
+  grid-template-rows: auto;
+  grid-template-areas: "event list";
+}
+
+#event {
+  grid-area: event;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  header {
+    display: flex;
+    gap: 3vw;
+
+    figure {
+      width: 40%;
+
+      img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+    }
+
+    #eventDetails {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      h2 {
+        font-size: 2rem;
+        line-height: 1.3;
+      }
+
+      > div {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        svg {
+          vertical-align: middle;
+          width: 1.5rem;
+          height: auto;
+          margin-right: 0.5vw;
+        }
+
+        #rightArrow {
+          margin: 0 0.5vw;
+        }
+
+        span {
+          font-size: 1.1rem;
+          font-weight: 500;
+        }
+
+        a {
+          text-decoration: solid 1px underline;
+          text-underline-offset: 4px;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+
+      #eventLocation {
+        span {
+          &:nth-child(2)::after {
+            content: ",";
+          }
+          &:last-child {
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+
+  p {
+    padding: 0 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    opacity: 0.9;
+  }
+
+  footer {
+    position: sticky;
+    bottom: 7.5svh;
+    box-shadow: 0 0 15px 15px colors.$blue-0;
+
+    ul {
+      background-color: colors.$white;
+      border-radius: 7px;
+      padding: 0.5rem;
+
+      display: flex;
+      align-items: center;
+      gap: 1.3rem;
+      justify-content: flex-end;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+
+        padding: 0.7rem;
+        border-radius: 7px;
+        background-color: colors.$blue-3;
+        font-weight: 500;
+        font-size: 1.05rem;
+
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: colors.$blue-2;
+        }
+
+        svg {
+          width: 1.5rem;
+          height: auto;
+          vertical-align: middle;
+        }
+      }
+
+      li:first-child {
+        margin-right: auto;
+        a {
+          background-color: transparent;
+
+          svg {
+            stroke: colors.$black;
+          }
+          span {
+            color: colors.$black;
+            font-weight: 600;
+          }
+          &:hover {
+            span {
+              text-decoration: solid underline 2px;
+              text-underline-offset: 6px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#eventsList {
+  grid-area: list;
+  padding: 0 2rem;
+
+  border-left: solid 1px rgba(colors.$white, 0.3);
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      img {
+        border-radius: 10px;
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+      }
+
+      h3 {
+        line-height: 1.5;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      &:hover {
+        h3 {
+          text-decoration: solid underline 2px;
+          text-underline-offset: 4px;
+        }
+      }
+    }
+  }
+}

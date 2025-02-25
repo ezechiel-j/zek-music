@@ -27,14 +27,6 @@ const page = () => {
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto atque ex accusantium repellendus alias."
         />
       </section>
-
-      <section id={styles.simulator}>
-        <header>
-          <h2 className={lexend.className}>
-            Besoin d&apos;une <span>estimation</span> ?
-          </h2>
-        </header>
-      </section>
     </div>
   );
 };

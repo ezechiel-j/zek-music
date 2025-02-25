@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BsFillCameraReelsFill } from "react-icons/bs";
+import { FaUserFriends } from "react-icons/fa";
 import { FaHeadphones } from "react-icons/fa6";
 import { GoVideo } from "react-icons/go";
 import { IoMdPhotos } from "react-icons/io";
 import styles from "./productionNav.module.scss";
-import { usePathname } from "next/navigation";
 
 const categories = [
   {
@@ -32,6 +33,12 @@ const categories = [
     icon: <IoMdPhotos />,
     href: "/productions/gallery",
     slug: "gallery",
+  },
+  {
+    name: "Collaborateurs",
+    icon: <FaUserFriends />,
+    href: "/productions/collaborators",
+    slug: "collaborators",
   },
 ];
 

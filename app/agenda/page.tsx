@@ -1,342 +1,143 @@
-import Form from "next/form";
+import { monthsToShort } from "@/lib/months";
+import prisma from "@/prisma/client";
+import Image from "next/image";
+import Link from "next/link";
 import { FaLocationDot, FaRegClock } from "react-icons/fa6";
 import { PiBuildingApartmentFill } from "react-icons/pi";
-import { TfiArrowCircleLeft, TfiArrowCircleRight } from "react-icons/tfi";
 import { lexend } from "../fonts";
 import styles from "./page.module.scss";
+import EventFilterForm from "./eventFilterForm";
 
-const page = () => {
+interface Event {
+  id: number;
+  title: string;
+  description: string;
+  thumbnailSrc: string;
+  thumbnailAlt: string;
+  startDate: Date;
+  endDate: Date | null;
+  city: string;
+  state: string | null;
+  country: string;
+  place: string;
+  placeMapLink: string;
+  isPaid: boolean;
+  boxOfficeLink: string | null;
+  hasProgram: boolean;
+  programLink: string | null;
+  typeId: number;
+}
+
+const page = async () => {
+  const events: Event[] = await prisma.event.findMany();
+
   return (
-    <section id={styles.pageContainer}>
-      <header id={styles.eventsHeader}>
-        <button>
-          <TfiArrowCircleLeft size={30} />
-        </button>
-        <button className={styles.active}>
-          <span>1</span>
-        </button>
-        <button>
-          <span>2</span>
-        </button>
-        <button>
-          <span>3</span>
-        </button>
-        <button>
-          <span>4</span>
-        </button>
-        <button>
-          <span>5</span>
-        </button>
-        <button>
-          <TfiArrowCircleRight size={30} />
-        </button>
-      </header>
-
+    <div id={styles.pageContainer}>
       <aside id={styles.filters}>
-        <Form action="/agenda/filtered-events" id={styles.filterForm}>
-          <h2>Filtrer les événements</h2>
-          <div>
-            <h3 className={lexend.className}>Dates</h3>
-            <span>
-              <label htmlFor="startDate">Du</label>
-              <input type="date" name="startDate" id="startDate" />
-            </span>
-            <span>
-              <label htmlFor="startDate">Au</label>
-              <input type="date" name="endDate" id="endDate" />
-            </span>
-          </div>
-
-          <div>
-            <h3 className={lexend.className}>Entrées</h3>
-            <span>
-              <input type="checkbox" name="paid" id="paid" />
-              <label htmlFor="paid">Payantes</label>
-            </span>
-            <span>
-              <input type="checkbox" name="free" id="free" />
-              <label htmlFor="free">Gratuites</label>
-            </span>
-          </div>
-
-          <div>
-            <h3 className={lexend.className}>Type</h3>
-            <span>
-              <input type="checkbox" name="performance" id="performance" />
-              <label htmlFor="performance">Performance</label>
-            </span>
-            <span>
-              <input type="checkbox" name="pedagogy" id="pedagogy" />
-              <label htmlFor="pedagogy">Pédagogie</label>
-            </span>
-          </div>
-
-          <button type="submit">Filtrer</button>
-        </Form>
+        <EventFilterForm />
       </aside>
 
-      <ul id={styles.eventsList}>
-        <li>
-          <a href="" className={styles.event}>
-            <div className={styles.eventDates}>
-              <span className={styles.eventDay}>26</span>
-              <span className={styles.eventMonth}>Sep.</span>
-              <span className={styles.eventYear}>2023</span>
-            </div>
-            <div className={styles.eventInfo}>
-              <h3>
-                <span className={lexend.className}>Event name</span>
-              </h3>
-              <div className={styles.eventDescription}>
-                <div>
-                  <span>
-                    <FaLocationDot size={20} />
-                  </span>
-                  <span>Ville, Pays</span>
-                </div>
-                <div>
-                  <span>
-                    <PiBuildingApartmentFill size={20} />
-                  </span>
-                  <span>Lieu</span>
-                </div>
-                <div>
-                  <span>
-                    <FaRegClock size={20} />
-                  </span>
-                  <span>18h</span>
-                </div>
-              </div>
-              <div className={styles.eventTeaser}>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                  placeat repellendus distinctio nisi autem perspiciatis quos
-                  officia vero, dolorem dolor libero atque. Molestias, possimus!
-                  Debitis ipsam ex nulla similique harum!
-                </p>
-              </div>
-            </div>
-            <img
-              src="/backgrounds/clip-sevenProd.jpg"
-              alt="Event picture"
-              className={styles.eventPicture}
-            />
-          </a>
-        </li>
-        <li>
-          <a href="" className={styles.event}>
-            <div className={styles.eventDates}>
-              <span className={styles.eventDay}>26</span>
-              <span className={styles.eventMonth}>Sep.</span>
-              <span className={styles.eventYear}>2023</span>
-            </div>
-            <div className={styles.eventInfo}>
-              <h3>
-                <span className={lexend.className}>Event name</span>
-              </h3>
-              <div className={styles.eventDescription}>
-                <div>
-                  <span>
-                    <FaLocationDot size={20} />
-                  </span>
-                  <span>Ville, Pays</span>
-                </div>
-                <div>
-                  <span>
-                    <PiBuildingApartmentFill size={20} />
-                  </span>
-                  <span>Lieu</span>
-                </div>
-                <div>
-                  <span>
-                    <FaRegClock size={20} />
-                  </span>
-                  <span>18h</span>
-                </div>
-              </div>
-              <div className={styles.eventTeaser}>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                  placeat repellendus distinctio nisi autem perspiciatis quos
-                  officia vero, dolorem dolor libero atque. Molestias, possimus!
-                  Debitis ipsam ex nulla similique harum!
-                </p>
-              </div>
-            </div>
-            <img
-              src="/backgrounds/clip-sevenProd.jpg"
-              alt="Event picture"
-              className={styles.eventPicture}
-            />
-          </a>
-        </li>
-        <li>
-          <a href="" className={styles.event}>
-            <div className={styles.eventDates}>
-              <span className={styles.eventDay}>26</span>
-              <span className={styles.eventMonth}>Sep.</span>
-              <span className={styles.eventYear}>2023</span>
-            </div>
-            <div className={styles.eventInfo}>
-              <h3>
-                <span className={lexend.className}>Event name</span>
-              </h3>
-              <div className={styles.eventDescription}>
-                <div>
-                  <span>
-                    <FaLocationDot size={20} />
-                  </span>
-                  <span>Ville, Pays</span>
-                </div>
-                <div>
-                  <span>
-                    <PiBuildingApartmentFill size={20} />
-                  </span>
-                  <span>Lieu</span>
-                </div>
-                <div>
-                  <span>
-                    <FaRegClock size={20} />
-                  </span>
-                  <span>18h</span>
-                </div>
-              </div>
-              <div className={styles.eventTeaser}>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                  placeat repellendus distinctio nisi autem perspiciatis quos
-                  officia vero, dolorem dolor libero atque. Molestias, possimus!
-                  Debitis ipsam ex nulla similique harum!
-                </p>
-              </div>
-            </div>
-            <img
-              src="/backgrounds/clip-sevenProd.jpg"
-              alt="Event picture"
-              className={styles.eventPicture}
-            />
-          </a>
-        </li>
-        <li>
-          <a href="" className={styles.event}>
-            <div className={styles.eventDates}>
-              <span className={styles.eventDay}>26</span>
-              <span className={styles.eventMonth}>Sep.</span>
-              <span className={styles.eventYear}>2023</span>
-            </div>
-            <div className={styles.eventInfo}>
-              <h3>
-                <span className={lexend.className}>Event name</span>
-              </h3>
-              <div className={styles.eventDescription}>
-                <div>
-                  <span>
-                    <FaLocationDot size={20} />
-                  </span>
-                  <span>Ville, Pays</span>
-                </div>
-                <div>
-                  <span>
-                    <PiBuildingApartmentFill size={20} />
-                  </span>
-                  <span>Lieu</span>
-                </div>
-                <div>
-                  <span>
-                    <FaRegClock size={20} />
-                  </span>
-                  <span>18h</span>
-                </div>
-              </div>
-              <div className={styles.eventTeaser}>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                  placeat repellendus distinctio nisi autem perspiciatis quos
-                  officia vero, dolorem dolor libero atque. Molestias, possimus!
-                  Debitis ipsam ex nulla similique harum!
-                </p>
-              </div>
-            </div>
-            <img
-              src="/backgrounds/clip-sevenProd.jpg"
-              alt="Event picture"
-              className={styles.eventPicture}
-            />
-          </a>
-        </li>
-        <li>
-          <a href="" className={styles.event}>
-            <div className={styles.eventDates}>
-              <span className={styles.eventDay}>26</span>
-              <span className={styles.eventMonth}>Sep.</span>
-              <span className={styles.eventYear}>2023</span>
-            </div>
-            <div className={styles.eventInfo}>
-              <h3>
-                <span className={lexend.className}>Event name</span>
-              </h3>
-              <div className={styles.eventDescription}>
-                <div>
-                  <span>
-                    <FaLocationDot size={20} />
-                  </span>
-                  <span>Ville, Pays</span>
-                </div>
-                <div>
-                  <span>
-                    <PiBuildingApartmentFill size={20} />
-                  </span>
-                  <span>Lieu</span>
-                </div>
-                <div>
-                  <span>
-                    <FaRegClock size={20} />
-                  </span>
-                  <span>18h</span>
-                </div>
-              </div>
-              <div className={styles.eventTeaser}>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                  placeat repellendus distinctio nisi autem perspiciatis quos
-                  officia vero, dolorem dolor libero atque. Molestias, possimus!
-                  Debitis ipsam ex nulla similique harum!
-                </p>
-              </div>
-            </div>
-            <img
-              src="/backgrounds/clip-sevenProd.jpg"
-              alt="Event picture"
-              className={styles.eventPicture}
-            />
-          </a>
-        </li>
-      </ul>
+      <div id={styles.eventsContainer}>
+        <header id={styles.eventsHeader}>
+          <button className={styles.active}>
+            <span>1</span>
+          </button>
+          <button>
+            <span>2</span>
+          </button>
+          <button>
+            <span>3</span>
+          </button>
+          <button>
+            <span>4</span>
+          </button>
+          <button>
+            <span>5</span>
+          </button>
+        </header>
 
-      <footer id={styles.eventsFooter}>
-        <button>
-          <TfiArrowCircleLeft size={30} />
-        </button>
-        <button className={styles.active}>
-          <span>1</span>
-        </button>
-        <button>
-          <span>2</span>
-        </button>
-        <button>
-          <span>3</span>
-        </button>
-        <button>
-          <span>4</span>
-        </button>
-        <button>
-          <span>5</span>
-        </button>
-        <button>
-          <TfiArrowCircleRight size={30} />
-        </button>
-      </footer>
-    </section>
+        <ul id={styles.eventsList}>
+          <li>
+            {events.map((event) => (
+              <Link
+                href={`/agenda/${event.id}`}
+                className={styles.event}
+                key={event.id}
+              >
+                <div className={styles.eventDates}>
+                  <span className={styles.eventDay}>
+                    {event.startDate.getDay()}
+                  </span>
+                  <span className={styles.eventMonth}>
+                    {monthsToShort[event.startDate.getMonth()]}
+                  </span>
+                  <span className={styles.eventYear}>
+                    {event.startDate.getFullYear()}
+                  </span>
+                </div>
+                <div className={styles.eventInfo}>
+                  <h3>
+                    <span className={lexend.className}>{event.title}</span>
+                  </h3>
+                  <div className={styles.eventDescription}>
+                    <div>
+                      <span>
+                        <FaLocationDot size={20} />
+                      </span>
+                      <span>
+                        {event.city}, {event.state ? `${event.state},` : ""}{" "}
+                        {event.country}
+                      </span>
+                    </div>
+                    <div>
+                      <span>
+                        <PiBuildingApartmentFill size={20} />
+                      </span>
+                      <span>{event.place}</span>
+                    </div>
+                    <div>
+                      <span>
+                        <FaRegClock size={20} />
+                      </span>
+                      <span>{event.startDate.getHours()}h</span>
+                    </div>
+                  </div>
+                  <div className={styles.eventTeaser}>
+                    <p>{event.description}</p>
+                  </div>
+                </div>
+                <Image
+                  src={`/thumbnails16_9/${event.thumbnailSrc}`}
+                  alt={event.thumbnailAlt}
+                  className={styles.eventPicture}
+                  width={200}
+                  height={200}
+                  layout="intrinsic"
+                />
+              </Link>
+            ))}
+          </li>
+        </ul>
+
+        <footer id={styles.eventsFooter}>
+          <button className={styles.active}>
+            <span>1</span>
+          </button>
+          <button>
+            <span>2</span>
+          </button>
+          <button>
+            <span>3</span>
+          </button>
+          <button>
+            <span>4</span>
+          </button>
+          <button>
+            <span>5</span>
+          </button>
+        </footer>
+      </div>
+    </div>
   );
 };
 

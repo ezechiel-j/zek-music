@@ -9,13 +9,12 @@
   overflow: hidden;
 
   li {
-    width: calc(20% - ((1rem * 4) / 5));
+    width: calc(25% - ((1rem * 3) / 4));
 
     img {
       aspect-ratio: 1/1;
       width: 100%;
       object-fit: cover;
-      cursor: pointer;
     }
   }
 }

@@ -6,17 +6,12 @@ import { usePathname } from "next/navigation";
 
 const newsCategories = [
   {
-    name: "Entrepreneuriat",
-    slug: "entrepreneurship",
-    href: "/news/entrepreneurship",
+    name: "Performance",
+    slug: "performance",
+    href: "/news/performance",
   },
-  { name: "Développement", slug: "development", href: "/news/development" },
-  { name: "Carrière", slug: "carrière", href: "/news/carreer" },
-  {
-    name: "Collaboration",
-    slug: "collaboration",
-    href: "/news/collaboration",
-  },
+  { name: "Pédagogie", slug: "pedagogy", href: "/news/pedagogy" },
+  { name: "Hardware", slug: "hardware", href: "/news/hardware" },
 ];
 
 const NewsNav = () => {

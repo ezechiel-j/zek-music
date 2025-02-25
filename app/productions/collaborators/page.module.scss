@@ -1,0 +1,38 @@
+#collaborations {
+  display: flex;
+  gap: 5rem;
+  flex-wrap: wrap;
+
+  li {
+    width: calc(20% - ((5rem * 4) / 5));
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .collaboratorPictureLink {
+      border-radius: 100px;
+
+      .collaboratorPicture {
+        width: 100%;
+        border-radius: 100px;
+      }
+
+      &:hover + .collaboratorName {
+        text-decoration: underline solid 2px;
+        text-underline-offset: 4px;
+      }
+    }
+
+    .collaboratorName {
+      line-height: 1.2;
+      text-align: center;
+
+      &:hover {
+        text-decoration: underline solid 2px;
+        text-underline-offset: 4px;
+      }
+    }
+  }
+}

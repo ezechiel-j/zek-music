@@ -1,4 +1,6 @@
+import Link from "next/link";
 import styles from "./page.module.scss";
+import Image from "next/image";
 
 const images = [
   {
@@ -58,7 +60,15 @@ const page = () => {
     <ul id={styles.imagesList}>
       {images.map((image) => (
         <li key={image.slug}>
-          <img src={image.src} alt={image.alt} />
+          <Link href={`/productions/gallery/${image.slug}`}>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={200}
+              height={200}
+              layout="responsive"
+            />
+          </Link>
         </li>
       ))}
     </ul>
