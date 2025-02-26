@@ -6,8 +6,23 @@ import Form from "next/form";
 import { IoIosSearch } from "react-icons/io";
 import { FaRegClock } from "react-icons/fa6";
 import { GrRevert } from "react-icons/gr";
+import prisma from "@/prisma/client";
 
-const page = () => {
+interface Props {
+  params: { id: string };
+}
+
+const page = async ({ params }: Props) => {
+  const post = await prisma.newsPost.findUnique({
+    where: {
+      id: parseInt(params.id),
+    },
+
+    include: {
+      category: true,
+    },
+  });
+
   return (
     <div id={styles.newsPostPage}>
       <section id={styles.post}>
@@ -19,9 +34,7 @@ const page = () => {
             </Link>
           </div>
 
-          <Link href="" id={styles.category}>
-            Category
-          </Link>
+          <Link href="" id={styles.category}></Link>
           <h2 className={lexend.className}>
             Blog post title Title Title Title Title Title Title Title Title
             Title Title Title Title

@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   Body,
   Container,
@@ -11,7 +12,7 @@ interface Props {
   firstName: string;
   lastName: string;
   email: string;
-  organisationName?: string;
+  organisationName: string;
   subject: string;
   message: string;
 }
@@ -37,11 +38,9 @@ export default function ContactMessage({
             <strong>Email :</strong> {email}
           </Text>
           {organisationName && (
-            <>
-              <Text>
-                <strong>Organisation :</strong> {organisationName}
-              </Text>
-            </>
+            <Text>
+              <strong>Organisation :</strong> {organisationName}
+            </Text>
           )}
 
           <Text>

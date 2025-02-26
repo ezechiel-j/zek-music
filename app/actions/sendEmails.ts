@@ -3,7 +3,8 @@
 import { render } from "@react-email/render";
 import { Resend } from "resend";
 import { z } from "zod";
-import ContactEmail from "../emails/ContactMessage";
+import ContactMessage from "../emails/ContactMessage";
+import React from "react";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -11,16 +12,13 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const formSchema = z.object({
   firstName: z.string().min(1, "Quel est votre prénom ?"),
   lastName: z.string().min(1, "Quel est votre nom de famille ?"),
-  organisationName: z
-    .string()
-    .min(1, "Quel est le nom de votre organisation ?")
-    .optional(),
+  organisationName: z.string().optional(),
   email: z.string().email("Veuillez renseigner une adresse email valide"),
   subject: z.string().min(1, "Quel est le sujet de votre message ?"),
   message: z.string().min(1, "Veuillez saisir votre message"),
 });
 
-export async function sendEmail(prevState: any, formData: FormData) {
+export default async function sendEmail(prevState: any, formData: FormData) {
   try {
     // Parse and validate form data
     const parsedData = formSchema.parse({
@@ -32,8 +30,16 @@ export async function sendEmail(prevState: any, formData: FormData) {
       message: formData.get("message"),
     });
 
+    // Ensure that optional string fields have default values
+    const parsedDataWithDefaults = {
+      ...parsedData,
+      organisationName: parsedData.organisationName || "",
+    };
+
     // Render email using React Email
-    const emailHtml = await render(<ContactEmail {...parsedData} />);
+    const emailHtml = await render(
+      React.createElement(ContactMessage, parsedDataWithDefaults)
+    );
 
     // Send email with Resend
     const response = await resend.emails.send({
@@ -45,7 +51,7 @@ export async function sendEmail(prevState: any, formData: FormData) {
 
     if (response.error) throw new Error(response.error.message);
 
-    return { success: true };
+    return { success: true, error: null };
   } catch (error) {
     return {
       success: false,

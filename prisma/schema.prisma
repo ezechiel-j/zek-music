@@ -34,6 +34,7 @@ model NewsPost {
 model NewsPostCategory {
   id       Int        @id @default(autoincrement())
   name     String     @unique
+  slug     String     @unique
   NewsPost NewsPost[]
 }
 
@@ -45,8 +46,10 @@ model Event {
   thumbnailSrc String
   thumbnailAlt String
 
-  startDate    DateTime  @db.DateTime()
-  endDate      DateTime? @db.DateTime()
+  startDate    DateTime  @db.Date
+  startTime    DateTime  @db.Time()
+  endDate      DateTime? @db.Date
+  endTime      DateTime  @db.Time()
   city         String    @db.TinyText
   state        String?   @db.TinyText
   country      String    @db.TinyText
@@ -65,6 +68,7 @@ model Event {
 model EventType {
   id    Int     @id @default(autoincrement())
   name  String  @unique
+  slug  String  @unique
   Event Event[]
 }
 
@@ -85,6 +89,7 @@ model BlogPost {
 model BlogPostCategory {
   id       Int        @id @default(autoincrement())
   name     String     @unique
+  slug     String     @unique
   BlogPost BlogPost[]
 }
 
@@ -109,6 +114,7 @@ model SetupItem {
 model SetupItemPlace {
   id   Int    @id @default(autoincrement())
   name String @unique
+  slug String @unique
 
   items SetupItemsOnPlaces[]
 }
@@ -125,6 +131,7 @@ model SetupItemsOnPlaces {
 model SetupItemRole {
   id   Int    @id @default(autoincrement())
   name String @unique
+  slug String @unique
 
   items SetupItemsOnRoles[]
 }
@@ -242,12 +249,14 @@ model Service {
 model ServiceCategory {
   id      Int       @id @default(autoincrement())
   name    String    @unique
+  slug    String    @unique
   Service Service[]
 }
 
 model ServiceRole {
   id       Int               @id @default(autoincrement())
   name     String            @unique
+  slug     String            @unique
   services ServicesOnRoles[]
 }
 

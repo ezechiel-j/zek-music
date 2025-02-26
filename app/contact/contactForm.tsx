@@ -2,14 +2,14 @@
 
 import Form from "next/form";
 import { useActionState } from "react";
-import { sendEmail } from "../actions/sendEmails";
+import sendEmail from "@/app/actions/sendEmails";
 import { lexend } from "../fonts";
 import styles from "./contactForm.module.scss";
 
 const ContactForm = () => {
   const [state, formAction] = useActionState(sendEmail, {
     success: false,
-    error: "",
+    error: null,
   });
 
   return (

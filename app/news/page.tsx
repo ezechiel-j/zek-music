@@ -2,26 +2,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { lexend } from "../fonts";
 import styles from "./page.module.scss";
+import prisma from "@/prisma/client";
+import { months } from "@/lib/months";
 
-const page = () => {
-  const posts = [
-    {
-      id: 1,
-      src: "shofukan-hear.png",
-      title: "Intégrer Storybook, Drupal et Vite et Drupal et Vite et Drupal",
-      description:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque ipsum, sint sed iste voluptas est cumque ipsa consequatur impedit dolore quo facere corrupti fugiat! Nihil, eaque? Modi nam dicta ab.",
-      date: "2 janv. 2023",
-    },
-  ];
+interface NewsPost {
+  id: number;
+  title: string;
+  teaser: string;
+  thumbnailSrc: string;
+  thumbnailAlt: string;
+  thumbnailCaption: string;
+  body: string;
+  createdAt: Date;
+  readTime: number;
+  categoryId: number;
+}
+
+const page = async () => {
+  const newsPosts: NewsPost[] = await prisma.newsPost.findMany();
 
   return (
     <ul id={styles.newsPosts}>
-      {posts.map((post) => (
+      {newsPosts.map((post) => (
         <li key={post.id}>
-          <Link href="/news/post-1">
+          <Link href={`news/${post.id}`}>
             <Image
-              src={`/thumbnails16_9/${post.src}`}
+              src={`/thumbnails16_9/${post.thumbnailSrc}`}
               alt="Zek"
               width={200}
               height={200}
@@ -29,14 +35,9 @@ const page = () => {
             />
             <div>
               <h3 className={lexend.className}>{post.title}</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptate, qui! Magni libero unde temporibus, ex et aspernatur,
-                distinctio illum ipsam nihil est ea doloremque similique
-                voluptatum omnis eaque sunt obcaecati?
-              </p>
+              <p>{post.teaser}</p>
               <footer>
-                <span>{post.date}</span>
+                <span>{`${post.createdAt.getDate()} ${months[post.createdAt.getMonth()]} ${post.createdAt.getFullYear()}`}</span>
               </footer>
             </div>
           </Link>

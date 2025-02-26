@@ -1,12 +1,12 @@
 import { monthsToShort } from "@/lib/months";
 import prisma from "@/prisma/client";
+import Form from "next/form";
 import Image from "next/image";
 import Link from "next/link";
 import { FaLocationDot, FaRegClock } from "react-icons/fa6";
 import { PiBuildingApartmentFill } from "react-icons/pi";
 import { lexend } from "../fonts";
 import styles from "./page.module.scss";
-import EventFilterForm from "./eventFilterForm";
 
 interface Event {
   id: number;
@@ -15,7 +15,9 @@ interface Event {
   thumbnailSrc: string;
   thumbnailAlt: string;
   startDate: Date;
+  startTime: Date;
   endDate: Date | null;
+  endTime: Date;
   city: string;
   state: string | null;
   country: string;
@@ -34,7 +36,44 @@ const page = async () => {
   return (
     <div id={styles.pageContainer}>
       <aside id={styles.filters}>
-        <EventFilterForm />
+        <Form action="/agenda/filter" id={styles.filterForm}>
+          <h2>Filtrer les événements</h2>
+          <fieldset>
+            <legend className={lexend.className}>Dates</legend>
+            <div>
+              <label htmlFor="fromDate">Du</label>
+              <input type="date" name="fromDate" id="fromDate" />
+            </div>
+            <div>
+              <label htmlFor="toDate">Au</label>
+              <input type="date" name="toDate" id="toDate" />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend className={lexend.className}>Type</legend>
+            <div>
+              <input
+                type="checkbox"
+                name="type"
+                id="performance"
+                value="performance"
+              />
+              <label htmlFor="performance">Performance</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                name="type"
+                id="pedagogy"
+                value="pedagogy"
+              />
+              <label htmlFor="pedagogy">Pédagogie</label>
+            </div>
+          </fieldset>
+
+          <button type="submit">Filtrer</button>
+        </Form>
       </aside>
 
       <div id={styles.eventsContainer}>
@@ -66,7 +105,7 @@ const page = async () => {
               >
                 <div className={styles.eventDates}>
                   <span className={styles.eventDay}>
-                    {event.startDate.getDay()}
+                    {event.startDate.getDate()}
                   </span>
                   <span className={styles.eventMonth}>
                     {monthsToShort[event.startDate.getMonth()]}
@@ -99,7 +138,7 @@ const page = async () => {
                       <span>
                         <FaRegClock size={20} />
                       </span>
-                      <span>{event.startDate.getHours()}h</span>
+                      <span>{event.startTime.getUTCHours()}h</span>
                     </div>
                   </div>
                   <div className={styles.eventTeaser}>

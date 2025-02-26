@@ -50,18 +50,27 @@ const page = async ({ params }: Props) => {
               </figure>
               <div id={styles.eventDetails}>
                 <h2 className={lexend.className}>{event.title}</h2>
+
                 <div id={styles.eventDates}>
                   <span>
                     <IoCalendar />
                   </span>
-                  <span>{`${event.startDate.getDate()} ${months[event.startDate.getMonth()]} ${event.startDate.getFullYear()} à ${event.startDate.getHours()}h`}</span>
-                  {event.endDate && (
-                    <>
-                      <span>
-                        <FaArrowRightLong id={styles.rightArrow} />
-                      </span>
-                      <span>{`${event.endDate.getDate()} ${months[event.endDate.getMonth()]} ${event.endDate.getFullYear()}  à ${event.endDate.getHours()}h`}</span>
-                    </>
+
+                  {event.endDate ? (
+                    event.startDate.toLocaleDateString() ===
+                    event.endDate!.toLocaleDateString() ? (
+                      <span>{`${event.startDate.getDate()} ${months[event.startDate.getMonth()]} ${event.startDate.getFullYear()} de ${event.startTime.getUTCHours()}h à ${event.endTime.getUTCHours()}h`}</span>
+                    ) : (
+                      <>
+                        <span>{`${event.startDate.getDate()} ${months[event.startDate.getMonth()]} ${event.startDate.getFullYear()} à ${event.startTime.getUTCHours()}h`}</span>
+                        <span>
+                          <FaArrowRightLong id={styles.rightArrow} />
+                        </span>
+                        <span>{`${event.endDate.getDate()} ${months[event.endDate.getMonth()]} ${event.endDate.getFullYear()}  à ${event.endTime.getUTCHours()}h`}</span>
+                      </>
+                    )
+                  ) : (
+                    <span>{`${event.startDate.getDate()} ${months[event.startDate.getMonth()]} ${event.startDate.getFullYear()} de ${event.startTime.getUTCHours()}h à ${event.endTime.getUTCHours()}h`}</span>
                   )}
                 </div>
                 <div id={styles.eventLocation}>
