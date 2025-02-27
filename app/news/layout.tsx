@@ -12,8 +12,8 @@ const ServiceLayout = ({
         <div id={styles.headerTop}>
           <Form action="/news/search" id={styles.searchForm}>
             <input
-              type="search"
-              name="title"
+              type="/news/search"
+              name="s"
               placeholder="Rechercher un article"
             />
             <button type="submit">

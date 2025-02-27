@@ -1,8 +1,9 @@
+
 @use "../scss/colors";
 
 #productionPage {
   height: 100%;
-
+  
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: auto 1fr;

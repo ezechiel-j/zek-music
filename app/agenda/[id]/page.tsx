@@ -15,10 +15,11 @@ import { lexend } from "../../fonts";
 import styles from "./page.module.scss";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-const page = async ({ params }: Props) => {
+const page = async (props: Props) => {
+  const params = await props.params;
   const event = await prisma.event.findUnique({
     where: {
       id: parseInt(params.id),

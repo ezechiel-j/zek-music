@@ -1,18 +1,33 @@
+import { getSearchedBlog } from "@/app/actions/searchBlog";
+import { lexend } from "@/app/fonts";
 import Image from "next/image";
 import Link from "next/link";
-import { lexend } from "../../fonts";
 import styles from "../page.module.scss";
-import prisma from "@/prisma/client";
 
-const page = async () => {
-  const posts = await prisma.blogPost.findMany({
-    where: {
-      categoryId: 1,
-    },
-    include: {
-      category: true,
-    },
-  });
+interface Props {
+  searchParams: Promise<{
+    s: string;
+  }>;
+}
+
+interface Category {
+  id: number;
+  name: string;
+  slug: string;
+}
+
+interface Post {
+  id: number;
+  thumbnailSrc: string;
+  thumbnailAlt: string;
+  title: string;
+  readTime: number;
+  body: string;
+  category: Category;
+}
+
+export default async function BlogSearch({ searchParams }: Props) {
+  const posts: Post[] = await getSearchedBlog({ searchParams });
 
   return (
     <ul id={styles.blogList}>
@@ -36,6 +51,4 @@ const page = async () => {
       ))}
     </ul>
   );
-};
-
-export default page;
+}

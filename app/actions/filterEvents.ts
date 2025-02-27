@@ -10,7 +10,6 @@ interface Props {
 
 export async function getFilteredEvents({ searchParams }: Props) {
   const { fromDate, toDate, type } = await searchParams;
-  console.log(fromDate, toDate, type);
 
   if (typeof type === "string") {
     const events = await prisma.event.findMany({

@@ -1,24 +1,32 @@
-import { lexend } from "../../../fonts";
-import ServiceCard from "../../serviceCard";
+import prisma from "@/prisma/client";
 import styles from "../../pageContent.module.scss";
+import ServiceCard from "../../serviceCard";
 
-const page = () => {
+const page = async () => {
+  const services = await prisma.service.findMany({
+    where: {
+      contexts: {
+        some: {
+          ServiceContext: {
+            slug: "composition",
+          },
+        },
+      },
+    },
+  });
+
   return (
     <div id={styles.pageContent}>
       <section id={styles.services}>
-        <ServiceCard
-          name="Musique à l'image"
-          price={500}
-          unit="composition"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto atque ex accusantium repellendus alias."
-        />
-
-        <ServiceCard
-          name="Bed musical"
-          price={250}
-          unit="composition"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto atque ex accusantium repellendus alias."
-        />
+        {services.map((service) => (
+          <ServiceCard
+            key={service.id}
+            name={service.name}
+            price={service.price}
+            unit={service.unit}
+            description={service.description}
+          />
+        ))}
       </section>
     </div>
   );

@@ -4,32 +4,47 @@ import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
-import styles from "./page.module.scss";
+// Style from /productions/gallery page
+import styles from "@/app/productions/gallery/[id]/page.module.scss";
 import prisma from "@/prisma/client";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; photo: string }>;
 }
 
 const page = async (props: Props) => {
-  const { id } = await props.params;
+  const { id, photo } = await props.params;
 
   const galleryItem = await prisma.galleryImage.findUnique({
     where: {
-      id: parseInt(id),
+      id: parseInt(photo),
     },
   });
 
   // Find previous and next images based on createdAt timestamp
   const [previousImage, nextImage] = await Promise.all([
     prisma.galleryImage.findFirst({
-      where: { createdAt: { lt: galleryItem!.createdAt } },
+      where: {
+        collaborators: {
+          some: {
+            collaboratorId: parseInt(id),
+          },
+        },
+        createdAt: { lt: galleryItem!.createdAt },
+      },
       orderBy: { createdAt: "desc" },
       select: { id: true },
     }),
 
     prisma.galleryImage.findFirst({
-      where: { createdAt: { gt: galleryItem!.createdAt } },
+      where: {
+        collaborators: {
+          some: {
+            collaboratorId: parseInt(id),
+          },
+        },
+        createdAt: { gt: galleryItem!.createdAt },
+      },
       orderBy: { createdAt: "asc" },
       select: { id: true },
     }),
@@ -39,7 +54,7 @@ const page = async (props: Props) => {
     where: {
       photos: {
         some: {
-          galleryImageId: parseInt(id),
+          galleryImageId: parseInt(photo),
         },
       },
     },
@@ -49,7 +64,7 @@ const page = async (props: Props) => {
     <div id={styles.galleryItemPage}>
       <figure id={styles.galleryItemContainer}>
         {previousImage && (
-          <Link href={`/productions/gallery/${previousImage.id}`}>
+          <Link href={`/productions/collaborators/${id}/${previousImage.id}`}>
             <IoIosArrowDropleftCircle />
           </Link>
         )}
@@ -62,7 +77,7 @@ const page = async (props: Props) => {
           priority
         />
         {nextImage && (
-          <Link href={`/productions/gallery/${nextImage.id}`}>
+          <Link href={`/productions/collaborators/${id}/${nextImage.id}`}>
             <IoIosArrowDroprightCircle />
           </Link>
         )}

@@ -1,14 +1,24 @@
+import { getFilteredSetup } from "@/app/actions/filterSetup";
+import styles from "../page.module.scss";
 import Image from "next/image";
-import { lexend } from "../fonts";
-import styles from "./page.module.scss";
-import prisma from "@/prisma/client";
+import { lexend } from "@/app/fonts";
 
-const page = async () => {
-  const setupItems = await prisma.setupItem.findMany();
+interface Props {
+  searchParams: Promise<{
+    type: string[] | string;
+    place: string[] | string;
+    role: string[] | string;
+  }>;
+}
+
+const page = async ({ searchParams }: Props) => {
+  const filteredSetupItems = await getFilteredSetup({
+    searchParams,
+  });
 
   return (
     <ul id={styles.setupList}>
-      {setupItems.map((setupItem) => (
+      {filteredSetupItems.map((setupItem) => (
         <li key={setupItem.id}>
           <Image
             src={`/thumbnails16_9/${setupItem.thumbnailSrc}`}

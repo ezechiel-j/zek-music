@@ -23,26 +23,30 @@ const page = async () => {
 
   return (
     <ul id={styles.newsPosts}>
-      {newsPosts.map((post) => (
-        <li key={post.id}>
-          <Link href={`news/${post.id}`}>
-            <Image
-              src={`/thumbnails16_9/${post.thumbnailSrc}`}
-              alt="Zek"
-              width={200}
-              height={200}
-              layout="responsive"
-            />
-            <div>
-              <h3 className={lexend.className}>{post.title}</h3>
-              <p>{post.teaser}</p>
-              <footer>
-                <span>{`${post.createdAt.getDate()} ${months[post.createdAt.getMonth()]} ${post.createdAt.getFullYear()}`}</span>
-              </footer>
-            </div>
-          </Link>
-        </li>
-      ))}
+      {newsPosts.length > 0 ? (
+        newsPosts.map((post) => (
+          <li key={post.id}>
+            <Link href={`/news/${post.id}`}>
+              <Image
+                src={`/thumbnails16_9/${post.thumbnailSrc}`}
+                alt="Zek"
+                width={200}
+                height={200}
+                layout="responsive"
+              />
+              <div>
+                <h3 className={lexend.className}>{post.title}</h3>
+                <p>{post.teaser}</p>
+                <footer>
+                  <span>{`${post.createdAt.getDate()} ${months[post.createdAt.getMonth()]} ${post.createdAt.getFullYear()}`}</span>
+                </footer>
+              </div>
+            </Link>
+          </li>
+        ))
+      ) : (
+        <p>Aucun actualité n&apos;a été publiée</p>
+      )}
     </ul>
   );
 };
