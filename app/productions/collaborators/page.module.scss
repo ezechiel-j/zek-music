@@ -4,35 +4,55 @@
   flex-wrap: wrap;
 
   li {
-    width: calc(20% - ((5rem * 4) / 5));
+    width: calc(12.5% - ((5rem * 7) / 8));
 
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
 
+    @media screen and (max-width: 1997) {
+      width: calc(14.28% - ((5rem * 6) / 7));
+    }
+    @media screen and (max-width: 1774) {
+      width: calc(16.66% - ((5rem * 5) / 6));
+    }
+    @media screen and (max-width: 1513) {
+      width: calc(20% - ((5rem * 4) / 5));
+    }
+    @media screen and (max-width: 1278) {
+      width: calc(25% - ((5rem * 3) / 4));
+    }
+    @media screen and (max-width: 1077) {
+      width: calc(33.33% - ((5rem * 2) / 3));
+    }
+    @media screen and (max-width: 832) {
+      width: calc(50% - (5rem / 2));
+    }
+    @media screen and (max-width: 618) {
+      width: 100%;
+    }
+
+    &:hover {
+      .collaboratorName {
+        text-decoration: solid 1px underline;
+        text-underline-offset: 4px;
+      }
+    }
+
     .collaboratorPictureLink {
-      border-radius: 100px;
+      border-radius: 500px;
+      width: 100%;
 
       .collaboratorPicture {
         width: 100%;
-        border-radius: 100px;
-      }
-
-      &:hover + .collaboratorName {
-        text-decoration: underline solid 2px;
-        text-underline-offset: 4px;
+        border-radius: 500px;
       }
     }
 
     .collaboratorName {
       line-height: 1.2;
       text-align: center;
-
-      &:hover {
-        text-decoration: underline solid 2px;
-        text-underline-offset: 4px;
-      }
     }
   }
 }

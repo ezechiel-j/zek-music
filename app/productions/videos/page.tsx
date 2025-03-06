@@ -12,12 +12,12 @@ const page = async () => {
         {videos.map((video) => (
           <li key={video.id}>
             <a
-              href={video.videoExternalLink}
+              href={video.externalLink}
               target="_blank"
               className={styles.video}
             >
               <Image
-                src={`/thumbnails16_9/${video.thumbnailSrc}`}
+                src={`/videos/${video.thumbnailSrc}`}
                 alt={video.thumbnailAlt}
                 width={200}
                 height={200}

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./servicesCategories.module.scss";
+import styles from "./servicesCategoriesNav.module.scss";
 import { usePathname } from "next/navigation";
 
 const servicesLinks = [

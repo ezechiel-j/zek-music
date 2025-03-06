@@ -1,12 +1,36 @@
 @use "../../scss/colors";
 
 #imagesList {
+  height: fit-content;
+
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
 
   li {
-    width: calc(25% - ((1rem * 3) / 4));
+    width: calc(12.5% - ((1rem * 7) / 8));
+
+    @media screen and (max-width: 1827) {
+      width: calc(14.28% - ((1rem * 6) / 7));
+    }
+    @media screen and (max-width: 1506) {
+      width: calc(16.66% - ((1rem * 5) / 6));
+    }
+    @media screen and (max-width: 1258) {
+      width: calc(20% - ((1rem * 4) / 5));
+    }
+    @media screen and (max-width: 851) {
+      width: calc(25% - ((1rem * 3) / 4));
+    }
+    @media screen and (max-width: 683) {
+      width: calc(33.33% - ((1rem * 2) / 3));
+    }
+    @media screen and (max-width: 457) {
+      width: calc(50% - (1rem / 2));
+    }
+    @media screen and (max-width: 320) {
+      width: 100%;
+    }
 
     a {
       display: block;

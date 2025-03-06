@@ -7,10 +7,26 @@
   row-gap: 4rem;
 
   li {
-    width: calc(25% - ((2rem * 3) / 4));
+    width: calc(16.66% - ((2rem * 5) / 6));
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+
+    @media screen and (max-width: 1947) {
+      width: calc(20% - ((2rem * 4) / 5));
+    }
+    @media screen and (max-width: 1683) {
+      width: calc(25% - ((2rem * 3) / 4));
+    }
+    @media screen and (max-width: 1417) {
+      width: calc(33.33% - ((2rem * 2) / 3));
+    }
+    @media screen and (max-width: 784) {
+      width: calc(50% - (2rem / 2));
+    }
+    @media screen and (max-width: 520) {
+      width: 100%;
+    }
 
     a.video {
       display: flex;
@@ -36,7 +52,7 @@
       &:hover {
         h2 {
           text-decoration: underline solid 1px;
-          text-underline-offset: 4px;
+          text-underline-offset: 2px;
         }
       }
     }

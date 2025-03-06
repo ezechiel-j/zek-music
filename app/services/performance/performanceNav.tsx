@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./performanceNav.module.scss";
+import styles from "../subNav.module.scss";
 import { usePathname } from "next/navigation";
 
 const performanceLinks = [
@@ -21,7 +21,7 @@ const PerformanceNav = () => {
   const pathname = usePathname();
 
   return (
-    <ul id={styles.performancesList}>
+    <ul id={styles.navList}>
       {performanceLinks.map((link) => (
         <li key={link.slug}>
           <Link

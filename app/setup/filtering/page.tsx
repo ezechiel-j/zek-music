@@ -21,7 +21,7 @@ const page = async ({ searchParams }: Props) => {
       {filteredSetupItems.map((setupItem) => (
         <li key={setupItem.id}>
           <Image
-            src={`/thumbnails16_9/${setupItem.thumbnailSrc}`}
+            src={`/setup/${setupItem.thumbnailSrc}`}
             alt={setupItem.thumbnailAlt}
             width={200}
             height={200}

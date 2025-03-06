@@ -2,7 +2,7 @@
 
 #blogContainer {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 100%;
   grid-template-rows: auto 1fr;
   row-gap: 3rem;
 
@@ -17,12 +17,22 @@
     justify-content: space-between;
     align-items: center;
 
+    @media screen and (max-width: 600) {
+      align-items: stretch;
+      flex-direction: column;
+      row-gap: 1.5rem;
+    }
+
     #searchForm {
       flex-grow: 1;
       max-width: 30vw;
       min-width: min-content;
 
       display: flex;
+
+      @media screen and (max-width: 600) {
+        max-width: unset;
+      }
 
       > * {
         background-color: rgba(colors.$white, 0.15);

@@ -1,17 +1,27 @@
-
 @use "../scss/colors";
 
 #productionPage {
-  height: 100%;
-  
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: auto 1fr;
   column-gap: 5rem;
   grid-template-areas: "nav content" "nav content";
+
+  @media screen and (max-width: 1114) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    row-gap: 5svh;
+    grid-template-areas:
+      "nav"
+      "content";
+  }
 }
 
 #productionNav {
   grid-area: nav;
   border-right: rgba(colors.$white, 0.15) 2px solid;
+
+  @media screen and (max-width: 1114) {
+    border-right: none;
+  }
 }

@@ -1,0 +1,31 @@
+@use "../scss/colors";
+
+#navList {
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 953) {
+    max-height: 30svh;
+    overflow-y: scroll;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  a {
+    min-width: max-content;
+    display: block;
+    padding: 0.8rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: background-color 0.2s ease-out;
+
+    &:hover {
+      background-color: colors.$blue-1;
+    }
+  }
+
+  a.active {
+    background-color: colors.$blue-3;
+  }
+}

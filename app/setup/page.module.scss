@@ -5,7 +5,7 @@
   flex-wrap: wrap;
 
   li {
-    width: 25%;
+    width: 20%;
     border-top: solid 4px rgba(colors.$white, 0.3);
     transition: border-top-color 0.2s ease-out;
     padding: 2rem 1rem;
@@ -14,6 +14,19 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+
+    @media screen and (max-width: 1800) {
+      width: 25%;
+    }
+    @media screen and (max-width: 1432) {
+      width: 33%;
+    }
+    @media screen and (max-width: 789) {
+      width: 50%;
+    }
+    @media screen and (max-width: 536) {
+      width: 100%;
+    }
 
     &:hover {
       border-top-color: colors.$white;

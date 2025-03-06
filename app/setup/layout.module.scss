@@ -2,76 +2,22 @@
 
 #setupContainer {
   display: grid;
-  grid-template-columns: 17vw 1fr;
+  grid-template-columns: auto 1fr;
   column-gap: 3rem;
   grid-template-rows: 1fr;
 
   grid-template-areas: "filters" "setup";
+
+  @media screen and (max-width: 1141) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "filters"
+      "setup";
+    row-gap: 3rem;
+  }
 }
 
 #filters {
   grid-area: filters;
-
-  form {
-    background-color: colors.$white;
-    padding: 2rem;
-    border-radius: 15px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-
-    * {
-      color: colors.$black;
-    }
-
-    legend {
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin-bottom: 0.7rem;
-    }
-
-    div {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-
-      span {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-
-        font-weight: 400;
-
-        label {
-          cursor: pointer;
-          min-width: max-content;
-        }
-      }
-    }
-
-    button {
-      border: solid 2px colors.$blue-0;
-      background-color: colors.$blue-0;
-      color: colors.$white;
-      align-self: center;
-
-      display: block;
-      padding: 0.7rem 2rem;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.1rem;
-
-      transition:
-        background-color 0.2s,
-        color 0.2s,
-        border-color 0.2s;
-      transition-timing-function: ease-out;
-
-      &:hover {
-        background-color: transparent;
-        color: colors.$blue-0;
-      }
-    }
-  }
 }

@@ -154,11 +154,37 @@
       li {
         width: calc(16.66% - ((0.7rem * 5) / 6));
 
+        a {
+          display: block;
+          position: relative;
+
+          &:hover {
+            img {
+              filter: brightness(0.3) grayscale(0.8);
+            }
+            svg {
+              opacity: 1;
+            }
+          }
+        }
+
         img {
           width: 100%;
           object-fit: cover;
           aspect-ratio: 1/1;
           border-radius: 10px;
+          transition: filter 0.2s ease-out;
+        }
+
+        svg {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 22%;
+          height: auto;
+          opacity: 0;
+          transition: opacity 0.2s ease-out;
         }
       }
     }
@@ -192,7 +218,7 @@
 
         &:hover h4 {
           text-decoration: underline solid 1.5px;
-          text-underline-offset: 6px;
+          text-underline-offset: 2px;
         }
       }
     }

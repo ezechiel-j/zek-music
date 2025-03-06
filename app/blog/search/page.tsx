@@ -35,7 +35,7 @@ export default async function BlogSearch({ searchParams }: Props) {
         <li key={post.id}>
           <Link href={`/blog/${post.id}`}>
             <Image
-              src={`/thumbnails16_9/${post.thumbnailSrc}`}
+              src={`/blog/${post.thumbnailSrc}`}
               alt={post.thumbnailAlt}
               width={200}
               height={200}

@@ -6,6 +6,15 @@
   column-gap: 4vw;
   grid-template-rows: auto;
   grid-template-areas: "event list";
+
+  @media screen and (max-width: 1413) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    row-gap: 4svh;
+    grid-template-areas:
+      "event"
+      "list";
+  }
 }
 
 #event {
@@ -19,7 +28,13 @@
     display: flex;
     gap: 3vw;
 
+    @media screen and (max-width: 768) {
+      flex-direction: column;
+    }
+
     figure {
+      max-width: 400px;
+      min-width: 300px;
       width: 40%;
 
       img {
@@ -34,6 +49,10 @@
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+
+      @media screen and (max-width: 1413) {
+        flex-grow: 1;
+      }
 
       h2 {
         font-size: 2rem;
@@ -156,14 +175,38 @@
 
 #eventsList {
   grid-area: list;
+  min-width: min-content;
   padding: 0 2rem;
-
   border-left: solid 1px rgba(colors.$white, 0.3);
+
+  @media screen and (max-width: 1413) {
+    border-left: unset;
+  }
 
   ul {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
+
+    @media screen and (max-width: 1413) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    li {
+      @media screen and (max-width: 1413) {
+        width: calc(25% - ((2.5rem * 3) / 4));
+      }
+      @media screen and (max-width: 1246) {
+        width: calc(33.33% - ((2.5rem * 2) / 3));
+      }
+      @media screen and (max-width: 785) {
+        width: calc(50% - (2.5rem / 2));
+      }
+      @media screen and (max-width: 502) {
+        width: 100%;
+      }
+    }
 
     a {
       display: flex;
@@ -172,9 +215,14 @@
 
       img {
         border-radius: 10px;
+        min-width: 243px;
         width: 100%;
         aspect-ratio: 16/9;
         object-fit: cover;
+
+        @media screen and (max-width: 1413) {
+          min-width: unset;
+        }
       }
 
       h3 {
@@ -182,6 +230,7 @@
 
         display: -webkit-box;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }

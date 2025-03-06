@@ -11,11 +11,7 @@ const ServiceLayout = ({
       <header id={styles.pageHeader}>
         <div id={styles.headerTop}>
           <Form action="/news/search" id={styles.searchForm}>
-            <input
-              type="/news/search"
-              name="s"
-              placeholder="Rechercher un article"
-            />
+            <input type="search" name="s" placeholder="Rechercher un article" />
             <button type="submit">
               <IoIosSearch size={30} />
             </button>

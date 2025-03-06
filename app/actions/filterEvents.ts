@@ -25,6 +25,15 @@ export async function getFilteredEvents({ searchParams }: Props) {
           },
         },
       },
+
+      include: {
+        type: {
+          select: {
+            name: true,
+          },
+        },
+      },
+
       orderBy: {
         startDate: "asc",
       },
@@ -45,6 +54,15 @@ export async function getFilteredEvents({ searchParams }: Props) {
           },
         },
       },
+
+      include: {
+        type: {
+          select: {
+            name: true,
+          },
+        },
+      },
+
       orderBy: {
         startDate: "asc",
       },
@@ -59,6 +77,15 @@ export async function getFilteredEvents({ searchParams }: Props) {
           lte: toDate ? new Date(toDate) : undefined,
         },
       },
+
+      include: {
+        type: {
+          select: {
+            name: true,
+          },
+        },
+      },
+
       orderBy: {
         startDate: "asc",
       },

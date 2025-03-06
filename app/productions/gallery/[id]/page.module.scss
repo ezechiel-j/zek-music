@@ -1,17 +1,17 @@
 @use "../../../scss/colors";
 
 #galleryItemPage {
-  display: grid;
-  grid-template-columns: 1fr 26vw;
-  column-gap: 7vw;
-  grid-template-rows: auto;
-  grid-template-areas: "imageContainer description";
+  display: flex;
+  justify-content: center;
+  gap: 7rem;
 }
 
 #galleryItemContainer {
-  grid-area: imageContainer;
-
+  width: 50%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   a {
     position: absolute;
@@ -43,16 +43,11 @@
     border-radius: 10px;
     object-fit: contain;
     aspect-ratio: 4/3;
-
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
   }
 }
 
 #galleryItemInfo {
-  grid-area: description;
-
+  min-width: 375px;
   display: flex;
   flex-direction: column;
   justify-content: center;

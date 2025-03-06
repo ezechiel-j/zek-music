@@ -44,7 +44,7 @@ const page = async (props: Props) => {
                 <Image
                   width={100}
                   height={100}
-                  src={`/thumbnails16_9/${event.thumbnailSrc}`}
+                  src={`/events/${event.thumbnailSrc}`}
                   alt={event.thumbnailAlt}
                   layout="responsive"
                 />
@@ -156,7 +156,7 @@ const page = async (props: Props) => {
             <li key={event.id}>
               <Link href={`/agenda/${event.id}`}>
                 <Image
-                  src={`/thumbnails16_9/${event.thumbnailSrc}`}
+                  src={`/events/${event.thumbnailSrc}`}
                   alt={event.thumbnailAlt}
                   width={100}
                   height={100}

@@ -28,7 +28,10 @@ const page = () => {
   return (
     <div id={styles.contentContainer}>
       <div id={styles.message}>
-        <p>Vous pouvez me contacter par message, via mes réseaux sociaux, ou</p>
+        <p>
+          Vous pouvez me contacter par message, <br></br>via mes réseaux
+          sociaux, <br></br>ou
+        </p>
         <a
           id={styles.calendlyButton}
           href="https://calendly.com/johnstone-zek/entretien"
@@ -39,8 +42,6 @@ const page = () => {
         </a>
       </div>
 
-      <ContactForm />
-
       <ul id={styles.socials}>
         {socials.map((social) => (
           <li key={social.slug}>
@@ -49,13 +50,15 @@ const page = () => {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
+              title={social.title}
             >
               {social.icon}
             </a>
-            <span>{social.title}</span>
           </li>
         ))}
       </ul>
+
+      <ContactForm />
     </div>
   );
 };

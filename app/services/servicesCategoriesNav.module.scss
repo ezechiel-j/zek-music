@@ -1,0 +1,35 @@
+@use "../scss/colors";
+
+#servicesCategories {
+  padding-left: 17.5vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  @media screen and (max-width: 953) {
+    padding-left: 0;
+  }
+
+  a {
+    display: block;
+    border-radius: 50px;
+    min-width: max-content;
+    padding: 0.8rem 1.25rem;
+    font-weight: 500;
+    background-color: colors.$blue-3;
+    transition:
+      background-color 0.2s,
+      color 0.2s ease-out;
+
+    &:hover {
+      background-color: colors.$blue-5;
+    }
+  }
+
+  a.active {
+    background-color: colors.$white;
+    color: colors.$black;
+  }
+}

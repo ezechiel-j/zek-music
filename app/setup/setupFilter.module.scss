@@ -1,0 +1,154 @@
+@use "../scss/colors";
+
+#filterButton {
+  background-color: colors.$white;
+  box-shadow: 0 0 30px colors.$black;
+  cursor: pointer;
+  width: fit-content;
+  padding: 0.7rem 1rem;
+  border-radius: 7px;
+
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media screen and (max-width: 789) {
+    display: flex;
+  }
+
+  svg {
+    fill: colors.$black;
+    vertical-align: middle;
+    width: 1.5rem;
+    height: auto;
+  }
+
+  span {
+    color: colors.$black;
+    letter-spacing: 0.2;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+}
+
+#filterForm {
+  background-color: colors.$white;
+  box-shadow: 0 0 30px colors.$black;
+  padding: 2rem;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+
+  position: relative;
+
+  @media screen and (max-width: 1141) {
+    width: fit-content;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 789) {
+    border-radius: 0 15px 15px 0;
+    box-shadow: 0 0 30px colors.$black;
+    z-index: 9999;
+    width: 250px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    position: fixed;
+    left: -250px;
+    transition: left 0.2s ease-out;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &.active {
+      left: 0;
+    }
+  }
+
+  * {
+    color: colors.$black;
+  }
+
+  #closeButton {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    display: none;
+
+    @media screen and (max-width: 789) {
+      display: block;
+    }
+
+    svg {
+      width: 1.5rem;
+      height: auto;
+    }
+  }
+
+  fieldset {
+    flex-grow: 1;
+
+    @media screen and (max-width: 1141) {
+      flex-grow: 0;
+    }
+  }
+
+  legend {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.7rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      font-weight: 400;
+
+      label {
+        cursor: pointer;
+        min-width: max-content;
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  button {
+    border: solid 2px colors.$blue-0;
+    background-color: colors.$blue-0;
+    color: colors.$white;
+    align-self: center;
+
+    display: block;
+    padding: 0.7rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+    transition-timing-function: ease-out;
+
+    &:hover {
+      background-color: transparent;
+      color: colors.$blue-0;
+    }
+  }
+}

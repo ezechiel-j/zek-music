@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./pedagogyNav.module.scss";
 import { usePathname } from "next/navigation";
+import styles from "../subNav.module.scss";
 
 const pedagogyLinks = [
   {
@@ -21,7 +21,7 @@ const PedagogyNav = () => {
   const pathname = usePathname();
 
   return (
-    <ul id={styles.pedagogyList}>
+    <ul id={styles.navList}>
       {pedagogyLinks.map((link) => (
         <li key={link.slug}>
           <Link

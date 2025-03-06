@@ -1,3 +1,4 @@
+import prisma from "@/prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -5,7 +6,6 @@ import {
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 import styles from "./page.module.scss";
-import prisma from "@/prisma/client";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -54,7 +54,7 @@ const page = async (props: Props) => {
           </Link>
         )}
         <Image
-          src={`/galleryItems/${galleryItem!.imgSrc}`}
+          src={`/gallery/${galleryItem!.imgSrc}`}
           alt={galleryItem!.imgAlt}
           width={200}
           height={200}

@@ -86,7 +86,7 @@ const page = async (props: Props) => {
 
         <figure>
           <Image
-            src={`/thumbnails16_9/${post!.thumbnailSrc}`}
+            src={`/news/${post!.thumbnailSrc}`}
             alt={post!.thumbnailAlt}
             width={400}
             height={200}

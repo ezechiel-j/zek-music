@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./header.module.scss";
 import { usePathname } from "next/navigation";
+import { IoMenu } from "react-icons/io5";
+import styles from "./header.module.scss";
+import { useState } from "react";
 
 const menuLinks = [
   { name: "Productions", href: "/productions/videos", slug: "productions" },
@@ -20,6 +22,7 @@ const menuLinks = [
 
 const Header = () => {
   const path = usePathname();
+  const [isClicked, setIsClicked] = useState<boolean>(false);
 
   return (
     <header id={styles.header}>
@@ -29,7 +32,7 @@ const Header = () => {
         </Link>
       </h1>
 
-      <nav>
+      <nav className={isClicked ? styles.active : ""}>
         <ul>
           {menuLinks.map((link) => (
             <li key={link.slug}>
@@ -45,6 +48,12 @@ const Header = () => {
       </nav>
 
       <span></span>
+      <div
+        id={styles.responsiveMenuButton}
+        onClick={() => setIsClicked(!isClicked)}
+      >
+        <IoMenu />
+      </div>
     </header>
   );
 };

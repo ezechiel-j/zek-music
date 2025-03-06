@@ -46,28 +46,27 @@
   align-items: center;
   gap: 1rem;
 
-  svg {
-    height: 2rem;
-    width: auto;
-  }
-
   a {
     display: inline-block;
 
     border-radius: 50px;
-    background-color: colors.$white;
+    border: solid 2px colors.$white;
+    background-color: transparent;
     box-shadow: 0 0 15px colors.$blue-0;
-    padding: 0.75rem 1.5rem;
+    padding: 0.65rem 1.4rem;
+    min-width: max-content;
 
     font-size: 1.1rem;
     font-weight: 500;
-    color: colors.$black;
+    color: colors.$white;
 
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
 
     &:hover {
-      background-color: colors.$blue-4;
-      color: colors.$white;
+      background-color: colors.$white;
+      color: colors.$black;
     }
   }
 }

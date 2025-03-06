@@ -28,7 +28,7 @@ const page = async () => {
           <li key={post.id}>
             <Link href={`/news/${post.id}`}>
               <Image
-                src={`/thumbnails16_9/${post.thumbnailSrc}`}
+                src={`/news/${post.thumbnailSrc}`}
                 alt="Zek"
                 width={200}
                 height={200}

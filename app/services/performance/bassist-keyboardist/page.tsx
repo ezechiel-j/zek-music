@@ -17,16 +17,19 @@ const page = async () => {
 
   return (
     <div id={styles.pageContent}>
-      <section id={styles.services}>
-        {services.map((service) => (
-          <ServiceCard
-            key={service.id}
-            name={service.name}
-            price={service.price}
-            unit={service.unit}
-            description={service.description}
-          />
-        ))}
+      <section>
+        <ul id={styles.services}>
+          {services.map((service) => (
+            <li key={service.id}>
+              <ServiceCard
+                name={service.name}
+                price={service.price}
+                unit={service.unit}
+                description={service.description}
+              />
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   );

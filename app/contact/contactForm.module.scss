@@ -1,15 +1,22 @@
 @use "../scss/colors";
 
 #mailForm {
-  grid-area: form;
-
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
+  @media screen and (max-width: 446) {
+    gap: 2rem;
+  }
+
   .formLine {
     display: flex;
     gap: 3rem;
+
+    @media screen and (max-width: 446) {
+      flex-direction: column;
+      gap: 2rem;
+    }
   }
 
   .inputContainer {

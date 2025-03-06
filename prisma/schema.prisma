@@ -17,7 +17,7 @@ datasource db {
 model NewsPost {
   id               Int    @id @default(autoincrement())
   title            String @unique
-  teaser           String @db.TinyText
+  teaser           String @db.LongText
   thumbnailSrc     String
   thumbnailAlt     String
   thumbnailCaption String @db.TinyText
@@ -212,17 +212,17 @@ model Collaborator {
   name        String @unique
   description String @db.LongText
 
-  link_instagram String? @unique
-  link_facebook  String? @unique
-  link_linkedin  String? @unique
-  link_bandcamp  String? @unique
-  link_fiverr    String? @unique
+  link_instagram String?
+  link_facebook  String?
+  link_linkedin  String?
+  link_bandcamp  String?
+  link_fiverr    String?
 
-  extLink1 String? @unique
-  extLink2 String? @unique
-  extLink3 String? @unique
-  extLink4 String? @unique
-  extLink5 String? @unique
+  extLink1 String?
+  extLink2 String?
+  extLink3 String?
+  extLink4 String?
+  extLink5 String?
 
   videos CollaboratorsOnVideos[]
   photos CollaboratorsOnPhotos[]

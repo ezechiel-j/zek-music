@@ -14,7 +14,6 @@ export async function getFilteredSetup({ searchParams }: Props) {
   const typeArray = Array.isArray(type) ? type : [type];
   const placeArray = Array.isArray(place) ? place : [place];
   const roleArray = Array.isArray(role) ? role : [role];
-  console.log(typeArray, placeArray, roleArray);
 
   const filteredSetupItems = await prisma.setupItem.findMany({
     where: {

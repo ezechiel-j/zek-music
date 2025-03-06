@@ -6,6 +6,10 @@
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-width: 517) {
+    flex-wrap: wrap;
+  }
+
   a {
     display: block;
     border-radius: 100px;
@@ -15,7 +19,9 @@
 
     background-color: colors.$blue-3;
 
-    transition: background-color 0.2s, color 0.2s;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
 
     &:hover {
       background-color: colors.$blue-5;

@@ -21,7 +21,7 @@ export default async function NewsSearch({ searchParams }: Props) {
           <li key={post.id}>
             <Link href={`/news/${post.id}`}>
               <Image
-                src={`/thumbnails16_9/${post.thumbnailSrc}`}
+                src={`/news/${post.thumbnailSrc}`}
                 alt={post.thumbnailAlt}
                 width={200}
                 height={200}

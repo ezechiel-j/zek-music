@@ -1,19 +1,20 @@
 @use "../scss/colors";
 
 #contentContainer {
-  padding-top: 2svh;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.5rem;
 
-  display: grid;
-  grid-template-columns: 1fr 50% 1fr;
-  column-gap: 3rem;
-  grid-template-rows: auto;
-  grid-template-areas: "message form socials";
+  > * {
+    max-width: 768px;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 #message {
-  grid-area: message;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +23,7 @@
 
   p {
     text-align: center;
-    line-height: 1.3;
+    line-height: 1.5;
     font-size: 1.1rem;
   }
 
@@ -64,36 +65,15 @@
 }
 
 #socials {
-  grid-area: socials;
-
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 1.75rem;
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
 
   #social {
     svg {
       width: 3rem;
       height: auto;
     }
-
-    &:hover + span {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
-
-  span {
-    font-size: 1.1rem;
-    font-weight: 500;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.15s ease-out;
   }
 }

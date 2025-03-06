@@ -1,6 +1,7 @@
 @use "../../scss/colors";
 
 .audio {
+  
   width: calc(33% - ((2.25rem * 2) / 3));
   background-color: colors.$blue-2;
   border-radius: 10px;

@@ -1,6 +1,7 @@
 @use "../scss/colors";
 
 .service {
+  min-width: min-content;
   border-radius: 20px;
   background-color: colors.$blue-1;
   padding: 2rem;
@@ -51,7 +52,9 @@
       color: colors.$black;
       border-radius: 50px;
       border: solid 2px colors.$white;
-      transition: background-color 0.2s, color 0.2s ease-out;
+      transition:
+        background-color 0.2s,
+        color 0.2s ease-out;
 
       &:hover {
         background-color: transparent;

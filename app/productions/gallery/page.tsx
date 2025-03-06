@@ -15,7 +15,7 @@ const page = async () => {
         <li key={image.id}>
           <Link href={`/productions/gallery/${image.id}`}>
             <Image
-              src={`/galleryItems/${image.imgSrc}`}
+              src={`/gallery/${image.imgSrc}`}
               alt={image.imgAlt}
               width={200}
               height={200}

@@ -9,9 +9,30 @@
 #services {
   display: flex;
   justify-content: center;
-  gap: 4rem;
+  gap: 3rem;
+  flex-wrap: wrap;
 
-  > * {
-    width: calc(33.33% - ((4rem * 2) / 3));
+  li {
+    width: calc(16% - ((3rem * 5) / 6));
+
+    @media screen and (max-width: 2519) {
+      width: calc(20% - ((3rem * 4) / 5));
+    }
+
+    @media screen and (max-width: 2037) {
+      width: calc(25% - ((3rem * 3) / 4));
+    }
+
+    @media screen and (max-width: 1681) {
+      width: calc(33% - ((3rem * 2) / 3));
+    }
+
+    @media screen and (max-width: 1325) {
+      width: calc(50% - (3rem / 2));
+    }
+
+    @media screen and (max-width: 675) {
+      width: 100%;
+    }
   }
 }

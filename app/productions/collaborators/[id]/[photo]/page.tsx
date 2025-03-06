@@ -69,7 +69,7 @@ const page = async (props: Props) => {
           </Link>
         )}
         <Image
-          src={`/galleryItems/${galleryItem!.imgSrc}`}
+          src={`/gallery/${galleryItem!.imgSrc}`}
           alt={galleryItem!.imgAlt}
           width={200}
           height={200}

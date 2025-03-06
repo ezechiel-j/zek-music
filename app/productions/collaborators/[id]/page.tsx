@@ -5,6 +5,7 @@ import { SiAmazonmusic, SiApplemusic, SiTidal } from "react-icons/si";
 import { lexend } from "../../../fonts";
 import styles from "./page.module.scss";
 import prisma from "@/prisma/client";
+import { TbZoomInFilled } from "react-icons/tb";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -98,7 +99,7 @@ const page = async (props: Props) => {
                   <div className={styles.audioInfo}>
                     <div className={styles.audioPictureContainer}>
                       <Image
-                        src={`/thumbnails16_9/${audio.thumbnailSrc}`}
+                        src={`/audios/${audio.thumbnailSrc}`}
                         alt={audio.thumbnailAlt}
                         width={100}
                         height={100}
@@ -183,9 +184,13 @@ const page = async (props: Props) => {
             <ul>
               {videos.map((video) => (
                 <li key={video.id}>
-                  <a href={video.externalLink} className={styles.video}>
+                  <a
+                    href={video.externalLink}
+                    target="_blank"
+                    className={styles.video}
+                  >
                     <Image
-                      src={`/thumbnails16_9/${video.thumbnailSrc}`}
+                      src={`/videos/${video.thumbnailSrc}`}
                       alt={video.thumbnailAlt}
                       width={200}
                       height={200}
@@ -209,12 +214,13 @@ const page = async (props: Props) => {
                     href={`/productions/collaborators/${collaborator!.id}/${photo.id}`}
                   >
                     <Image
-                      src={`/thumbnails16_9/${photo.imgSrc}`}
+                      src={`/gallery/${photo.imgSrc}`}
                       alt={photo.imgAlt}
                       width={200}
                       height={200}
                       layout="responsive"
                     />
+                    <TbZoomInFilled />
                   </Link>
                 </li>
               ))}
